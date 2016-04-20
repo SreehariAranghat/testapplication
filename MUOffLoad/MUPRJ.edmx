@@ -1,0 +1,1108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MUPRJModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EvaluationBatches">
+          <Key>
+            <PropertyRef Name="BatchId" />
+          </Key>
+          <Property Name="BatchId" Type="int" Nullable="false" />
+          <Property Name="OldBatchId" Type="int" Nullable="false" />
+          <Property Name="BaseFolder" Type="nvarchar" MaxLength="100" />
+          <Property Name="BatchNo" Type="int" Nullable="false" />
+          <Property Name="CourseName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Semester" Type="int" Nullable="false" />
+          <Property Name="PaperName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="PaperCode" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="PartNo" Type="int" Nullable="false" />
+          <Property Name="RequestOwner" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="PrintedDate" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="ImportBatchId" Type="int" Nullable="false" />
+          <Property Name="ImportedDate" Type="datetime" Nullable="false" />
+          <Property Name="IsLocked" Type="bit" />
+          <Property Name="IsIndexed" Type="bit" />
+          <Property Name="IsReviewed" Type="bit" />
+          <Property Name="PGCourseName" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="EvaluationBatchItems">
+          <Key>
+            <PropertyRef Name="EvaluationBatchItemId" />
+          </Key>
+          <Property Name="EvaluationBatchItemId" Type="int" Nullable="false" />
+          <Property Name="BatchId" Type="int" Nullable="false" />
+          <Property Name="OrgDummyNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IndexedDummyNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IndexedRegNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="VerifiedRegNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="TempRegNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReviewedRegNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="IndexedUserId" Type="int" />
+          <Property Name="VerifiedUserId" Type="int" />
+          <Property Name="ReviewedUserId" Type="int" />
+          <Property Name="IndexedDate" Type="datetime" />
+          <Property Name="VerifiedDate" Type="datetime" />
+          <Property Name="IsLocked" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="UnitName" Type="varchar" MaxLength="50" />
+          <Property Name="IsMigrated" Type="bit" />
+          <Property Name="OldBatchItemId" Type="int" />
+          <Property Name="ReviewedDate" Type="datetime" />
+          <Property Name="LockedUserId" Type="int" />
+          <Property Name="ErrorText" Type="nvarchar" MaxLength="50" />
+          <Property Name="HasError" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Logs">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Messgage" Type="varchar(max)" Nullable="false" />
+          <Property Name="CreatedDate" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MarksCard">
+          <Key>
+            <PropertyRef Name="FinalResultId" />
+          </Key>
+          <Property Name="FinalResultId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UniqueNumber" Type="varchar" MaxLength="100" />
+          <Property Name="RegisterNumber" Type="varchar" MaxLength="50" />
+          <Property Name="StudentName" Type="varchar" MaxLength="500" />
+          <Property Name="CollegeName" Type="varchar" MaxLength="500" />
+          <Property Name="CollegeCode" Type="varchar" MaxLength="500" />
+          <Property Name="DegreeName" Type="varchar" MaxLength="500" />
+          <Property Name="YearSem" Type="int" />
+          <Property Name="GroupName" Type="varchar" MaxLength="50" />
+          <Property Name="SubGroupName" Type="varchar" MaxLength="50" />
+          <Property Name="SubjectName" Type="varchar(max)" />
+          <Property Name="SubjectCode" Type="varchar" MaxLength="50" />
+          <Property Name="TheoryGrace" Type="varchar" MaxLength="50" />
+          <Property Name="TheoryMarks" Type="varchar" MaxLength="50" />
+          <Property Name="TheoryMin" Type="varchar" MaxLength="50" />
+          <Property Name="TheoryMax" Type="varchar" MaxLength="50" />
+          <Property Name="TheoryTotal" Type="varchar" MaxLength="50" />
+          <Property Name="TheoryIAMarks" Type="varchar" MaxLength="50" />
+          <Property Name="TheoryIAGrace" Type="varchar" MaxLength="50" />
+          <Property Name="TheoryIAMin" Type="varchar" MaxLength="50" />
+          <Property Name="TheoryIAMax" Type="varchar" MaxLength="50" />
+          <Property Name="TheoryIATotal" Type="varchar" MaxLength="50" />
+          <Property Name="TheoryNetTotal" Type="varchar" MaxLength="50" />
+          <Property Name="PracticalMarks" Type="varchar" MaxLength="50" />
+          <Property Name="PracticalGrace" Type="varchar" MaxLength="50" />
+          <Property Name="PracticalMin" Type="varchar" MaxLength="50" />
+          <Property Name="PracticalMax" Type="varchar" MaxLength="50" />
+          <Property Name="PracticalTotal" Type="varchar" MaxLength="50" />
+          <Property Name="PracticalIAMarks" Type="varchar" MaxLength="50" />
+          <Property Name="PracticalIAGrace" Type="varchar" MaxLength="50" />
+          <Property Name="PracticalIAMin" Type="varchar" MaxLength="50" />
+          <Property Name="PracticalIAMax" Type="varchar" MaxLength="50" />
+          <Property Name="PracticalIATotal" Type="varchar" MaxLength="50" />
+          <Property Name="PracticalNetTotal" Type="varchar" MaxLength="50" />
+          <Property Name="VivaVoice" Type="varchar" MaxLength="50" />
+          <Property Name="VivaVoiceMin" Type="varchar" MaxLength="50" />
+          <Property Name="VivaVoiceMax" Type="varchar" MaxLength="50" />
+          <Property Name="SubjectTotal" Type="varchar" MaxLength="50" />
+          <Property Name="SubGroupTotal" Type="varchar" MaxLength="50" />
+          <Property Name="GroupTotal" Type="varchar" MaxLength="50" />
+          <Property Name="TotalMarks" Type="varchar" MaxLength="50" />
+          <Property Name="SubjectMin" Type="int" />
+          <Property Name="SubjectMax" Type="int" />
+          <Property Name="SubjectCredits" Type="varchar" MaxLength="50" />
+          <Property Name="SubjectGPA" Type="varchar" MaxLength="50" />
+          <Property Name="SubjectGPW" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="IsSubjectPass" Type="bit" />
+          <Property Name="MarksPercent" Type="float" />
+          <Property Name="AlphaSign" Type="varchar" MaxLength="50" />
+          <Property Name="SemesterCredits" Type="varchar" MaxLength="50" />
+          <Property Name="SemesterMax" Type="int" />
+          <Property Name="SemesterMin" Type="int" />
+          <Property Name="SemesterTotal" Type="int" />
+          <Property Name="SemesterPercentage" Type="varchar" MaxLength="50" />
+          <Property Name="SemesterGPA" Type="varchar" MaxLength="50" />
+          <Property Name="TotalGPW" Type="varchar" MaxLength="50" />
+          <Property Name="TotalGP" Type="varchar" MaxLength="50" />
+          <Property Name="ExaminationYear" Type="varchar" MaxLength="50" />
+          <Property Name="SemesterClass" Type="varchar" MaxLength="100" />
+          <Property Name="SemesterAlphaSign" Type="varchar" MaxLength="50" />
+          <Property Name="IsSemesterPass" Type="varchar" MaxLength="50" />
+          <Property Name="Remarks" Type="varchar" MaxLength="50" />
+          <Property Name="YearText" Type="varchar" MaxLength="50" />
+          <Property Name="WordText" Type="varchar" MaxLength="50" />
+          <Property Name="SubjectType" Type="varchar" MaxLength="50" />
+          <Property Name="CourseCode" Type="varchar" MaxLength="50" />
+          <Property Name="MarksCardOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="mdbSubjectPaperDetail">
+          <Key>
+            <PropertyRef Name="SubjectId" />
+          </Key>
+          <Property Name="SubjectId" Type="int" Nullable="false" />
+          <Property Name="StreamName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StreamCode" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StreamType" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="StreamSubjectName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StreamSubjectCode" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SubjectPaperName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SubjectPaperCode" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SubjectPaperType" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="YearSem" Type="tinyint" Nullable="false" />
+          <Property Name="TheoryMax" Type="float" />
+          <Property Name="TheoryMin" Type="float" />
+          <Property Name="TheoryIAMax" Type="float" />
+          <Property Name="TheoryIAMin" Type="float" />
+          <Property Name="PracticalExamMax" Type="float" />
+          <Property Name="PracticalClassRecordMax" Type="float" />
+          <Property Name="PracticalMax" Type="float" />
+          <Property Name="PracticalMin" Type="float" />
+          <Property Name="PracticalIAMax" Type="float" />
+          <Property Name="PracticalIAMin" Type="float" />
+          <Property Name="TheoryAndTheoryIAMin" Type="float" />
+          <Property Name="PracticalAndPracticalIAMin" Type="float" />
+          <Property Name="VivaVoiceMin" Type="float" />
+          <Property Name="VivaVoice" Type="float" />
+          <Property Name="TotalPassMarks" Type="float" />
+          <Property Name="PracticalPracticalIAAndVivaVoiceMin" Type="float" />
+          <Property Name="PracticalAndVivaMin" Type="float" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MUPRJ.dbo.OldMarksTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="OldMarksTable">
+          <Key>
+            <PropertyRef Name="OldMarksId" />
+          </Key>
+          <Property Name="OldMarksId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OldResultMap">
+          <Key>
+            <PropertyRef Name="OldResultId" />
+          </Key>
+          <Property Name="OldResultId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegisterNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="YearSem" Type="int" Nullable="false" />
+          <Property Name="SemsterMax" Type="int" Nullable="false" />
+          <Property Name="SemesterMarks" Type="int" Nullable="false" />
+          <Property Name="SemesterGPA" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="SemesterCredits" Type="int" Nullable="false" />
+          <Property Name="SemesterWeightage" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="Remarks" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastExaminationBatchId" Type="int" Nullable="false" />
+          <Property Name="CourseCode" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MUPRJ.dbo.OldSemesterMarks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="OldSemesterMarks">
+          <Key>
+            <PropertyRef Name="OldResultId" />
+            <PropertyRef Name="LastExaminationId" />
+            <PropertyRef Name="RegNo" />
+            <PropertyRef Name="Semester" />
+            <PropertyRef Name="SemesterMarks" />
+            <PropertyRef Name="SemesterPercentage" />
+            <PropertyRef Name="IsSemesterPass" />
+          </Key>
+          <Property Name="OldResultId" Type="int" Nullable="false" />
+          <Property Name="LastExaminationId" Type="int" Nullable="false" />
+          <Property Name="RegNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Semester" Type="int" Nullable="false" />
+          <Property Name="SemesterMarks" Type="int" Nullable="false" />
+          <Property Name="SemesterPercentage" Type="int" Nullable="false" />
+          <Property Name="IsSemesterPass" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MUPRJ.dbo.UGFinalResultTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UGFinalResultTable">
+          <Key>
+            <PropertyRef Name="FinalResultId" />
+            <PropertyRef Name="RegisterNumber" />
+            <PropertyRef Name="StudentName" />
+            <PropertyRef Name="CollegeName" />
+            <PropertyRef Name="CollegeCode" />
+            <PropertyRef Name="DegreeName" />
+            <PropertyRef Name="YearSem" />
+            <PropertyRef Name="GroupName" />
+            <PropertyRef Name="SubjectName" />
+            <PropertyRef Name="SubjectCode" />
+            <PropertyRef Name="TheoryGrace" />
+            <PropertyRef Name="TheoryMarks" />
+            <PropertyRef Name="TheoryMin" />
+            <PropertyRef Name="TheoryMax" />
+            <PropertyRef Name="TheoryTotal" />
+            <PropertyRef Name="TheoryIAMarks" />
+            <PropertyRef Name="TheoryIAGrace" />
+            <PropertyRef Name="TheoryIAMin" />
+            <PropertyRef Name="TheoryIAMax" />
+            <PropertyRef Name="TheoryIATotal" />
+            <PropertyRef Name="TheoryNetTotal" />
+            <PropertyRef Name="PracticalMarks" />
+            <PropertyRef Name="PracticalGrace" />
+            <PropertyRef Name="PracticalMin" />
+            <PropertyRef Name="PracticalMax" />
+            <PropertyRef Name="PracticalTotal" />
+            <PropertyRef Name="PracticalIAMarks" />
+            <PropertyRef Name="PracticalIAGrace" />
+            <PropertyRef Name="PracticalIAMin" />
+            <PropertyRef Name="PracticalIAMax" />
+            <PropertyRef Name="PracticalIATotal" />
+            <PropertyRef Name="PracticalNetTotal" />
+            <PropertyRef Name="VivaVoice" />
+            <PropertyRef Name="VivaVoiceMin" />
+            <PropertyRef Name="VivaVoiceMax" />
+            <PropertyRef Name="TotalMarks" />
+            <PropertyRef Name="SubjectMin" />
+            <PropertyRef Name="SubjectMax" />
+            <PropertyRef Name="CreatedDate" />
+          </Key>
+          <Property Name="FinalResultId" Type="int" Nullable="false" />
+          <Property Name="RegisterNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="StudentName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="CollegeName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="CollegeCode" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="DegreeName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="YearSem" Type="int" Nullable="false" />
+          <Property Name="GroupName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SubGroupName" Type="varchar" MaxLength="50" />
+          <Property Name="SubjectName" Type="varchar(max)" Nullable="false" />
+          <Property Name="SubjectCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TheoryGrace" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TheoryMarks" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TheoryMin" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TheoryMax" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TheoryTotal" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TheoryIAMarks" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TheoryIAGrace" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TheoryIAMin" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TheoryIAMax" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TheoryIATotal" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TheoryNetTotal" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PracticalMarks" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PracticalGrace" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PracticalMin" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PracticalMax" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PracticalTotal" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PracticalIAMarks" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PracticalIAGrace" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PracticalIAMin" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PracticalIAMax" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PracticalIATotal" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PracticalNetTotal" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="VivaVoice" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="VivaVoiceMin" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="VivaVoiceMax" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SubjectTotal" Type="varchar" MaxLength="50" />
+          <Property Name="SubGroupTotal" Type="varchar" MaxLength="50" />
+          <Property Name="GroupTotal" Type="varchar" MaxLength="50" />
+          <Property Name="TotalMarks" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SubjectMin" Type="int" Nullable="false" />
+          <Property Name="SubjectMax" Type="int" Nullable="false" />
+          <Property Name="SubjectCredits" Type="float" />
+          <Property Name="SubjectGPA" Type="float" />
+          <Property Name="SubjectGPW" Type="float" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="IsSubjectPass" Type="bit" />
+          <Property Name="MarksPercent" Type="float" />
+          <Property Name="AlphaSign" Type="varchar" MaxLength="50" />
+          <Property Name="SemesterCredits" Type="int" />
+          <Property Name="SemesterMax" Type="int" />
+          <Property Name="SemesterMin" Type="int" />
+          <Property Name="SemesterTotal" Type="int" />
+          <Property Name="SemesterPercentage" Type="float" />
+          <Property Name="SemesterGPA" Type="float" />
+          <Property Name="SemesterClass" Type="varchar" MaxLength="100" />
+          <Property Name="SemesterAlphaSign" Type="varchar" MaxLength="50" />
+          <Property Name="IsSemesterPass" Type="bit" />
+          <Property Name="Remarks" Type="varchar" MaxLength="50" />
+          <Property Name="YearText" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_EvaluationBatchItems_EvaluationBatches">
+          <End Role="EvaluationBatches" Type="Self.EvaluationBatches" Multiplicity="1" />
+          <End Role="EvaluationBatchItems" Type="Self.EvaluationBatchItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EvaluationBatches">
+              <PropertyRef Name="BatchId" />
+            </Principal>
+            <Dependent Role="EvaluationBatchItems">
+              <PropertyRef Name="BatchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MUPRJModelStoreContainer">
+          <EntitySet Name="EvaluationBatches" EntityType="Self.EvaluationBatches" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EvaluationBatchItems" EntityType="Self.EvaluationBatchItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Logs" EntityType="Self.Logs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MarksCard" EntityType="Self.MarksCard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mdbSubjectPaperDetail" EntityType="Self.mdbSubjectPaperDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OldResultMap" EntityType="Self.OldResultMap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OldMarksTable" EntityType="Self.OldMarksTable" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [OldMarksTable].[OldMarksId] AS [OldMarksId]
+    FROM [dbo].[OldMarksTable] AS [OldMarksTable]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="OldSemesterMarks" EntityType="Self.OldSemesterMarks" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [OldSemesterMarks].[OldResultId] AS [OldResultId], 
+    [OldSemesterMarks].[LastExaminationId] AS [LastExaminationId], 
+    [OldSemesterMarks].[RegNo] AS [RegNo], 
+    [OldSemesterMarks].[Semester] AS [Semester], 
+    [OldSemesterMarks].[SemesterMarks] AS [SemesterMarks], 
+    [OldSemesterMarks].[SemesterPercentage] AS [SemesterPercentage], 
+    [OldSemesterMarks].[IsSemesterPass] AS [IsSemesterPass]
+    FROM [dbo].[OldSemesterMarks] AS [OldSemesterMarks]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UGFinalResultTable" EntityType="Self.UGFinalResultTable" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [UGFinalResultTable].[FinalResultId] AS [FinalResultId], 
+    [UGFinalResultTable].[RegisterNumber] AS [RegisterNumber], 
+    [UGFinalResultTable].[StudentName] AS [StudentName], 
+    [UGFinalResultTable].[CollegeName] AS [CollegeName], 
+    [UGFinalResultTable].[CollegeCode] AS [CollegeCode], 
+    [UGFinalResultTable].[DegreeName] AS [DegreeName], 
+    [UGFinalResultTable].[YearSem] AS [YearSem], 
+    [UGFinalResultTable].[GroupName] AS [GroupName], 
+    [UGFinalResultTable].[SubGroupName] AS [SubGroupName], 
+    [UGFinalResultTable].[SubjectName] AS [SubjectName], 
+    [UGFinalResultTable].[SubjectCode] AS [SubjectCode], 
+    [UGFinalResultTable].[TheoryGrace] AS [TheoryGrace], 
+    [UGFinalResultTable].[TheoryMarks] AS [TheoryMarks], 
+    [UGFinalResultTable].[TheoryMin] AS [TheoryMin], 
+    [UGFinalResultTable].[TheoryMax] AS [TheoryMax], 
+    [UGFinalResultTable].[TheoryTotal] AS [TheoryTotal], 
+    [UGFinalResultTable].[TheoryIAMarks] AS [TheoryIAMarks], 
+    [UGFinalResultTable].[TheoryIAGrace] AS [TheoryIAGrace], 
+    [UGFinalResultTable].[TheoryIAMin] AS [TheoryIAMin], 
+    [UGFinalResultTable].[TheoryIAMax] AS [TheoryIAMax], 
+    [UGFinalResultTable].[TheoryIATotal] AS [TheoryIATotal], 
+    [UGFinalResultTable].[TheoryNetTotal] AS [TheoryNetTotal], 
+    [UGFinalResultTable].[PracticalMarks] AS [PracticalMarks], 
+    [UGFinalResultTable].[PracticalGrace] AS [PracticalGrace], 
+    [UGFinalResultTable].[PracticalMin] AS [PracticalMin], 
+    [UGFinalResultTable].[PracticalMax] AS [PracticalMax], 
+    [UGFinalResultTable].[PracticalTotal] AS [PracticalTotal], 
+    [UGFinalResultTable].[PracticalIAMarks] AS [PracticalIAMarks], 
+    [UGFinalResultTable].[PracticalIAGrace] AS [PracticalIAGrace], 
+    [UGFinalResultTable].[PracticalIAMin] AS [PracticalIAMin], 
+    [UGFinalResultTable].[PracticalIAMax] AS [PracticalIAMax], 
+    [UGFinalResultTable].[PracticalIATotal] AS [PracticalIATotal], 
+    [UGFinalResultTable].[PracticalNetTotal] AS [PracticalNetTotal], 
+    [UGFinalResultTable].[VivaVoice] AS [VivaVoice], 
+    [UGFinalResultTable].[VivaVoiceMin] AS [VivaVoiceMin], 
+    [UGFinalResultTable].[VivaVoiceMax] AS [VivaVoiceMax], 
+    [UGFinalResultTable].[SubjectTotal] AS [SubjectTotal], 
+    [UGFinalResultTable].[SubGroupTotal] AS [SubGroupTotal], 
+    [UGFinalResultTable].[GroupTotal] AS [GroupTotal], 
+    [UGFinalResultTable].[TotalMarks] AS [TotalMarks], 
+    [UGFinalResultTable].[SubjectMin] AS [SubjectMin], 
+    [UGFinalResultTable].[SubjectMax] AS [SubjectMax], 
+    [UGFinalResultTable].[SubjectCredits] AS [SubjectCredits], 
+    [UGFinalResultTable].[SubjectGPA] AS [SubjectGPA], 
+    [UGFinalResultTable].[SubjectGPW] AS [SubjectGPW], 
+    [UGFinalResultTable].[CreatedDate] AS [CreatedDate], 
+    [UGFinalResultTable].[IsSubjectPass] AS [IsSubjectPass], 
+    [UGFinalResultTable].[MarksPercent] AS [MarksPercent], 
+    [UGFinalResultTable].[AlphaSign] AS [AlphaSign], 
+    [UGFinalResultTable].[SemesterCredits] AS [SemesterCredits], 
+    [UGFinalResultTable].[SemesterMax] AS [SemesterMax], 
+    [UGFinalResultTable].[SemesterMin] AS [SemesterMin], 
+    [UGFinalResultTable].[SemesterTotal] AS [SemesterTotal], 
+    [UGFinalResultTable].[SemesterPercentage] AS [SemesterPercentage], 
+    [UGFinalResultTable].[SemesterGPA] AS [SemesterGPA], 
+    [UGFinalResultTable].[SemesterClass] AS [SemesterClass], 
+    [UGFinalResultTable].[SemesterAlphaSign] AS [SemesterAlphaSign], 
+    [UGFinalResultTable].[IsSemesterPass] AS [IsSemesterPass], 
+    [UGFinalResultTable].[Remarks] AS [Remarks], 
+    [UGFinalResultTable].[YearText] AS [YearText]
+    FROM [dbo].[UGFinalResultTable] AS [UGFinalResultTable]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_EvaluationBatchItems_EvaluationBatches" Association="Self.FK_EvaluationBatchItems_EvaluationBatches">
+            <End Role="EvaluationBatches" EntitySet="EvaluationBatches" />
+            <End Role="EvaluationBatchItems" EntitySet="EvaluationBatchItems" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MUPRJModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="MUPRJEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Logs" EntityType="MUPRJModel.Log" />
+          <EntitySet Name="EvaluationBatches" EntityType="MUPRJModel.EvaluationBatch" />
+          <EntitySet Name="EvaluationBatchItems" EntityType="MUPRJModel.EvaluationBatchItem" />
+          <AssociationSet Name="FK_EvaluationBatchItems_EvaluationBatches" Association="MUPRJModel.FK_EvaluationBatchItems_EvaluationBatches">
+            <End Role="EvaluationBatch" EntitySet="EvaluationBatches" />
+            <End Role="EvaluationBatchItem" EntitySet="EvaluationBatchItems" />
+          </AssociationSet>
+          <EntitySet Name="OldMarksTables" EntityType="MUPRJModel.OldMarksTable" />
+          <EntitySet Name="OldSemesterMarks" EntityType="MUPRJModel.OldSemesterMark" />
+          <EntitySet Name="UGFinalResultTables" EntityType="MUPRJModel.UGFinalResultTable" />
+          <EntitySet Name="mdbSubjectPaperDetails" EntityType="MUPRJModel.mdbSubjectPaperDetail" />
+          <EntitySet Name="MarksCards" EntityType="MUPRJModel.MarksCard" />
+          <EntitySet Name="OldResultMaps" EntityType="MUPRJModel.OldResultMap" />
+        </EntityContainer>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Messgage" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EvaluationBatch">
+          <Key>
+            <PropertyRef Name="BatchId" />
+          </Key>
+          <Property Name="BatchId" Type="Int32" Nullable="false" />
+          <Property Name="OldBatchId" Type="Int32" Nullable="false" />
+          <Property Name="BaseFolder" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BatchNo" Type="Int32" Nullable="false" />
+          <Property Name="CourseName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Semester" Type="Int32" Nullable="false" />
+          <Property Name="PaperName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PaperCode" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PartNo" Type="Int32" Nullable="false" />
+          <Property Name="RequestOwner" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PrintedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="ImportBatchId" Type="Int32" Nullable="false" />
+          <Property Name="ImportedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsLocked" Type="Boolean" />
+          <Property Name="IsIndexed" Type="Boolean" />
+          <Property Name="IsReviewed" Type="Boolean" />
+          <Property Name="PGCourseName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EvaluationBatchItems" Relationship="MUPRJModel.FK_EvaluationBatchItems_EvaluationBatches" FromRole="EvaluationBatch" ToRole="EvaluationBatchItem" />
+        </EntityType>
+        <EntityType Name="EvaluationBatchItem">
+          <Key>
+            <PropertyRef Name="EvaluationBatchItemId" />
+          </Key>
+          <Property Name="EvaluationBatchItemId" Type="Int32" Nullable="false" />
+          <Property Name="BatchId" Type="Int32" Nullable="false" />
+          <Property Name="OrgDummyNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IndexedDummyNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IndexedRegNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VerifiedRegNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TempRegNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReviewedRegNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IndexedUserId" Type="Int32" />
+          <Property Name="VerifiedUserId" Type="Int32" />
+          <Property Name="ReviewedUserId" Type="Int32" />
+          <Property Name="IndexedDate" Type="DateTime" Precision="3" />
+          <Property Name="VerifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsLocked" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="UnitName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsMigrated" Type="Boolean" />
+          <Property Name="OldBatchItemId" Type="Int32" />
+          <Property Name="ReviewedDate" Type="DateTime" Precision="3" />
+          <Property Name="LockedUserId" Type="Int32" />
+          <Property Name="ErrorText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HasError" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="EvaluationBatch" Relationship="MUPRJModel.FK_EvaluationBatchItems_EvaluationBatches" FromRole="EvaluationBatchItem" ToRole="EvaluationBatch" />
+        </EntityType>
+        <Association Name="FK_EvaluationBatchItems_EvaluationBatches">
+          <End Type="MUPRJModel.EvaluationBatch" Role="EvaluationBatch" Multiplicity="1" />
+          <End Type="MUPRJModel.EvaluationBatchItem" Role="EvaluationBatchItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EvaluationBatch">
+              <PropertyRef Name="BatchId" />
+            </Principal>
+            <Dependent Role="EvaluationBatchItem">
+              <PropertyRef Name="BatchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="OldMarksTable">
+          <Key>
+            <PropertyRef Name="OldMarksId" />
+          </Key>
+          <Property Name="OldMarksId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OldSemesterMark">
+          <Key>
+            <PropertyRef Name="OldResultId" />
+            <PropertyRef Name="LastExaminationId" />
+            <PropertyRef Name="RegNo" />
+            <PropertyRef Name="Semester" />
+            <PropertyRef Name="SemesterMarks" />
+            <PropertyRef Name="SemesterPercentage" />
+            <PropertyRef Name="IsSemesterPass" />
+          </Key>
+          <Property Name="OldResultId" Type="Int32" Nullable="false" />
+          <Property Name="LastExaminationId" Type="Int32" Nullable="false" />
+          <Property Name="RegNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Semester" Type="Int32" Nullable="false" />
+          <Property Name="SemesterMarks" Type="Int32" Nullable="false" />
+          <Property Name="SemesterPercentage" Type="Int32" Nullable="false" />
+          <Property Name="IsSemesterPass" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UGFinalResultTable">
+          <Key>
+            <PropertyRef Name="FinalResultId" />
+            <PropertyRef Name="RegisterNumber" />
+            <PropertyRef Name="StudentName" />
+            <PropertyRef Name="CollegeName" />
+            <PropertyRef Name="CollegeCode" />
+            <PropertyRef Name="DegreeName" />
+            <PropertyRef Name="YearSem" />
+            <PropertyRef Name="GroupName" />
+            <PropertyRef Name="SubjectName" />
+            <PropertyRef Name="SubjectCode" />
+            <PropertyRef Name="TheoryGrace" />
+            <PropertyRef Name="TheoryMarks" />
+            <PropertyRef Name="TheoryMin" />
+            <PropertyRef Name="TheoryMax" />
+            <PropertyRef Name="TheoryTotal" />
+            <PropertyRef Name="TheoryIAMarks" />
+            <PropertyRef Name="TheoryIAGrace" />
+            <PropertyRef Name="TheoryIAMin" />
+            <PropertyRef Name="TheoryIAMax" />
+            <PropertyRef Name="TheoryIATotal" />
+            <PropertyRef Name="TheoryNetTotal" />
+            <PropertyRef Name="PracticalMarks" />
+            <PropertyRef Name="PracticalGrace" />
+            <PropertyRef Name="PracticalMin" />
+            <PropertyRef Name="PracticalMax" />
+            <PropertyRef Name="PracticalTotal" />
+            <PropertyRef Name="PracticalIAMarks" />
+            <PropertyRef Name="PracticalIAGrace" />
+            <PropertyRef Name="PracticalIAMin" />
+            <PropertyRef Name="PracticalIAMax" />
+            <PropertyRef Name="PracticalIATotal" />
+            <PropertyRef Name="PracticalNetTotal" />
+            <PropertyRef Name="VivaVoice" />
+            <PropertyRef Name="VivaVoiceMin" />
+            <PropertyRef Name="VivaVoiceMax" />
+            <PropertyRef Name="TotalMarks" />
+            <PropertyRef Name="SubjectMin" />
+            <PropertyRef Name="SubjectMax" />
+            <PropertyRef Name="CreatedDate" />
+          </Key>
+          <Property Name="FinalResultId" Type="Int32" Nullable="false" />
+          <Property Name="RegisterNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StudentName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CollegeName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CollegeCode" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DegreeName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="YearSem" Type="Int32" Nullable="false" />
+          <Property Name="GroupName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubGroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubjectName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SubjectCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TheoryGrace" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TheoryMarks" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TheoryMin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TheoryMax" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TheoryTotal" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TheoryIAMarks" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TheoryIAGrace" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TheoryIAMin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TheoryIAMax" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TheoryIATotal" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TheoryNetTotal" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PracticalMarks" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PracticalGrace" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PracticalMin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PracticalMax" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PracticalTotal" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PracticalIAMarks" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PracticalIAGrace" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PracticalIAMin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PracticalIAMax" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PracticalIATotal" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PracticalNetTotal" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VivaVoice" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VivaVoiceMin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VivaVoiceMax" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubjectTotal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubGroupTotal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GroupTotal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TotalMarks" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubjectMin" Type="Int32" Nullable="false" />
+          <Property Name="SubjectMax" Type="Int32" Nullable="false" />
+          <Property Name="SubjectCredits" Type="Double" />
+          <Property Name="SubjectGPA" Type="Double" />
+          <Property Name="SubjectGPW" Type="Double" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsSubjectPass" Type="Boolean" />
+          <Property Name="MarksPercent" Type="Double" />
+          <Property Name="AlphaSign" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SemesterCredits" Type="Int32" />
+          <Property Name="SemesterMax" Type="Int32" />
+          <Property Name="SemesterMin" Type="Int32" />
+          <Property Name="SemesterTotal" Type="Int32" />
+          <Property Name="SemesterPercentage" Type="Double" />
+          <Property Name="SemesterGPA" Type="Double" />
+          <Property Name="SemesterClass" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SemesterAlphaSign" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsSemesterPass" Type="Boolean" />
+          <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="YearText" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="mdbSubjectPaperDetail">
+          <Key>
+            <PropertyRef Name="SubjectId" />
+          </Key>
+          <Property Name="SubjectId" Type="Int32" Nullable="false" />
+          <Property Name="StreamName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StreamCode" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StreamType" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="StreamSubjectName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StreamSubjectCode" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubjectPaperName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubjectPaperCode" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubjectPaperType" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="YearSem" Type="Byte" Nullable="false" />
+          <Property Name="TheoryMax" Type="Double" />
+          <Property Name="TheoryMin" Type="Double" />
+          <Property Name="TheoryIAMax" Type="Double" />
+          <Property Name="TheoryIAMin" Type="Double" />
+          <Property Name="PracticalExamMax" Type="Double" />
+          <Property Name="PracticalClassRecordMax" Type="Double" />
+          <Property Name="PracticalMax" Type="Double" />
+          <Property Name="PracticalMin" Type="Double" />
+          <Property Name="PracticalIAMax" Type="Double" />
+          <Property Name="PracticalIAMin" Type="Double" />
+          <Property Name="TheoryAndTheoryIAMin" Type="Double" />
+          <Property Name="PracticalAndPracticalIAMin" Type="Double" />
+          <Property Name="VivaVoiceMin" Type="Double" />
+          <Property Name="VivaVoice" Type="Double" />
+          <Property Name="TotalPassMarks" Type="Double" />
+          <Property Name="PracticalPracticalIAAndVivaVoiceMin" Type="Double" />
+          <Property Name="PracticalAndVivaMin" Type="Double" />
+        </EntityType>
+        <EntityType Name="MarksCard">
+          <Key>
+            <PropertyRef Name="FinalResultId" />
+          </Key>
+          <Property Name="FinalResultId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RegisterNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StudentName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CollegeName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CollegeCode" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DegreeName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="YearSem" Type="Int32" />
+          <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubGroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubjectName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SubjectCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TheoryGrace" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TheoryMarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TheoryMin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TheoryMax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TheoryTotal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TheoryIAMarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TheoryIAGrace" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TheoryIAMin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TheoryIAMax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TheoryIATotal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TheoryNetTotal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PracticalMarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PracticalGrace" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PracticalMin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PracticalMax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PracticalTotal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PracticalIAMarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PracticalIAGrace" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PracticalIAMin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PracticalIAMax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PracticalIATotal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PracticalNetTotal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VivaVoice" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VivaVoiceMin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VivaVoiceMax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubjectTotal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubGroupTotal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GroupTotal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TotalMarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubjectMin" Type="Int32" />
+          <Property Name="SubjectMax" Type="Int32" />
+          <Property Name="SubjectCredits" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubjectGPA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubjectGPW" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsSubjectPass" Type="Boolean" />
+          <Property Name="MarksPercent" Type="Double" />
+          <Property Name="AlphaSign" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SemesterCredits" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SemesterMax" Type="Int32" />
+          <Property Name="SemesterMin" Type="Int32" />
+          <Property Name="SemesterTotal" Type="Int32" />
+          <Property Name="SemesterPercentage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SemesterGPA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TotalGPW" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TotalGP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SemesterClass" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SemesterAlphaSign" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsSemesterPass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="YearText" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WordText" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubjectType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CourseCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MarksCardOrder" Type="Int32" />
+          <Property Name="ExaminationYear" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="OldResultMap">
+          <Key>
+            <PropertyRef Name="OldResultId" />
+          </Key>
+          <Property Name="OldResultId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegisterNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="YearSem" Type="Int32" Nullable="false" />
+          <Property Name="SemsterMax" Type="Int32" Nullable="false" />
+          <Property Name="SemesterMarks" Type="Int32" Nullable="false" />
+          <Property Name="SemesterGPA" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
+          <Property Name="SemesterCredits" Type="Int32" Nullable="false" />
+          <Property Name="SemesterWeightage" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="Remarks" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastExaminationBatchId" Type="Int32" Nullable="false" />
+          <Property Name="CourseCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MUPRJModelStoreContainer" CdmEntityContainer="MUPRJEntities">
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="MUPRJModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="MUPRJModel.Log">
+              <MappingFragment StoreEntitySet="Logs">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Messgage" ColumnName="Messgage" />
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EvaluationBatches">
+            <EntityTypeMapping TypeName="MUPRJModel.EvaluationBatch">
+              <MappingFragment StoreEntitySet="EvaluationBatches">
+                <ScalarProperty Name="PGCourseName" ColumnName="PGCourseName" />
+                <ScalarProperty Name="IsReviewed" ColumnName="IsReviewed" />
+                <ScalarProperty Name="IsIndexed" ColumnName="IsIndexed" />
+                <ScalarProperty Name="IsLocked" ColumnName="IsLocked" />
+                <ScalarProperty Name="ImportedDate" ColumnName="ImportedDate" />
+                <ScalarProperty Name="ImportBatchId" ColumnName="ImportBatchId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="PrintedDate" ColumnName="PrintedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RequestOwner" ColumnName="RequestOwner" />
+                <ScalarProperty Name="PartNo" ColumnName="PartNo" />
+                <ScalarProperty Name="PaperCode" ColumnName="PaperCode" />
+                <ScalarProperty Name="PaperName" ColumnName="PaperName" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="BatchNo" ColumnName="BatchNo" />
+                <ScalarProperty Name="BaseFolder" ColumnName="BaseFolder" />
+                <ScalarProperty Name="OldBatchId" ColumnName="OldBatchId" />
+                <ScalarProperty Name="BatchId" ColumnName="BatchId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EvaluationBatchItems">
+            <EntityTypeMapping TypeName="MUPRJModel.EvaluationBatchItem">
+              <MappingFragment StoreEntitySet="EvaluationBatchItems">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="HasError" ColumnName="HasError" />
+                <ScalarProperty Name="ErrorText" ColumnName="ErrorText" />
+                <ScalarProperty Name="LockedUserId" ColumnName="LockedUserId" />
+                <ScalarProperty Name="ReviewedDate" ColumnName="ReviewedDate" />
+                <ScalarProperty Name="OldBatchItemId" ColumnName="OldBatchItemId" />
+                <ScalarProperty Name="IsMigrated" ColumnName="IsMigrated" />
+                <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsLocked" ColumnName="IsLocked" />
+                <ScalarProperty Name="VerifiedDate" ColumnName="VerifiedDate" />
+                <ScalarProperty Name="IndexedDate" ColumnName="IndexedDate" />
+                <ScalarProperty Name="ReviewedUserId" ColumnName="ReviewedUserId" />
+                <ScalarProperty Name="VerifiedUserId" ColumnName="VerifiedUserId" />
+                <ScalarProperty Name="IndexedUserId" ColumnName="IndexedUserId" />
+                <ScalarProperty Name="ReviewedRegNo" ColumnName="ReviewedRegNo" />
+                <ScalarProperty Name="TempRegNo" ColumnName="TempRegNo" />
+                <ScalarProperty Name="VerifiedRegNo" ColumnName="VerifiedRegNo" />
+                <ScalarProperty Name="IndexedRegNo" ColumnName="IndexedRegNo" />
+                <ScalarProperty Name="IndexedDummyNumber" ColumnName="IndexedDummyNumber" />
+                <ScalarProperty Name="OrgDummyNumber" ColumnName="OrgDummyNumber" />
+                <ScalarProperty Name="BatchId" ColumnName="BatchId" />
+                <ScalarProperty Name="EvaluationBatchItemId" ColumnName="EvaluationBatchItemId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OldMarksTables">
+            <EntityTypeMapping TypeName="MUPRJModel.OldMarksTable">
+              <MappingFragment StoreEntitySet="OldMarksTable">
+                <ScalarProperty Name="OldMarksId" ColumnName="OldMarksId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OldSemesterMarks">
+            <EntityTypeMapping TypeName="MUPRJModel.OldSemesterMark">
+              <MappingFragment StoreEntitySet="OldSemesterMarks">
+                <ScalarProperty Name="IsSemesterPass" ColumnName="IsSemesterPass" />
+                <ScalarProperty Name="SemesterPercentage" ColumnName="SemesterPercentage" />
+                <ScalarProperty Name="SemesterMarks" ColumnName="SemesterMarks" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
+                <ScalarProperty Name="RegNo" ColumnName="RegNo" />
+                <ScalarProperty Name="LastExaminationId" ColumnName="LastExaminationId" />
+                <ScalarProperty Name="OldResultId" ColumnName="OldResultId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UGFinalResultTables">
+            <EntityTypeMapping TypeName="MUPRJModel.UGFinalResultTable">
+              <MappingFragment StoreEntitySet="UGFinalResultTable">
+                <ScalarProperty Name="YearText" ColumnName="YearText" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="IsSemesterPass" ColumnName="IsSemesterPass" />
+                <ScalarProperty Name="SemesterAlphaSign" ColumnName="SemesterAlphaSign" />
+                <ScalarProperty Name="SemesterClass" ColumnName="SemesterClass" />
+                <ScalarProperty Name="SemesterGPA" ColumnName="SemesterGPA" />
+                <ScalarProperty Name="SemesterPercentage" ColumnName="SemesterPercentage" />
+                <ScalarProperty Name="SemesterTotal" ColumnName="SemesterTotal" />
+                <ScalarProperty Name="SemesterMin" ColumnName="SemesterMin" />
+                <ScalarProperty Name="SemesterMax" ColumnName="SemesterMax" />
+                <ScalarProperty Name="SemesterCredits" ColumnName="SemesterCredits" />
+                <ScalarProperty Name="AlphaSign" ColumnName="AlphaSign" />
+                <ScalarProperty Name="MarksPercent" ColumnName="MarksPercent" />
+                <ScalarProperty Name="IsSubjectPass" ColumnName="IsSubjectPass" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="SubjectGPW" ColumnName="SubjectGPW" />
+                <ScalarProperty Name="SubjectGPA" ColumnName="SubjectGPA" />
+                <ScalarProperty Name="SubjectCredits" ColumnName="SubjectCredits" />
+                <ScalarProperty Name="SubjectMax" ColumnName="SubjectMax" />
+                <ScalarProperty Name="SubjectMin" ColumnName="SubjectMin" />
+                <ScalarProperty Name="TotalMarks" ColumnName="TotalMarks" />
+                <ScalarProperty Name="GroupTotal" ColumnName="GroupTotal" />
+                <ScalarProperty Name="SubGroupTotal" ColumnName="SubGroupTotal" />
+                <ScalarProperty Name="SubjectTotal" ColumnName="SubjectTotal" />
+                <ScalarProperty Name="VivaVoiceMax" ColumnName="VivaVoiceMax" />
+                <ScalarProperty Name="VivaVoiceMin" ColumnName="VivaVoiceMin" />
+                <ScalarProperty Name="VivaVoice" ColumnName="VivaVoice" />
+                <ScalarProperty Name="PracticalNetTotal" ColumnName="PracticalNetTotal" />
+                <ScalarProperty Name="PracticalIATotal" ColumnName="PracticalIATotal" />
+                <ScalarProperty Name="PracticalIAMax" ColumnName="PracticalIAMax" />
+                <ScalarProperty Name="PracticalIAMin" ColumnName="PracticalIAMin" />
+                <ScalarProperty Name="PracticalIAGrace" ColumnName="PracticalIAGrace" />
+                <ScalarProperty Name="PracticalIAMarks" ColumnName="PracticalIAMarks" />
+                <ScalarProperty Name="PracticalTotal" ColumnName="PracticalTotal" />
+                <ScalarProperty Name="PracticalMax" ColumnName="PracticalMax" />
+                <ScalarProperty Name="PracticalMin" ColumnName="PracticalMin" />
+                <ScalarProperty Name="PracticalGrace" ColumnName="PracticalGrace" />
+                <ScalarProperty Name="PracticalMarks" ColumnName="PracticalMarks" />
+                <ScalarProperty Name="TheoryNetTotal" ColumnName="TheoryNetTotal" />
+                <ScalarProperty Name="TheoryIATotal" ColumnName="TheoryIATotal" />
+                <ScalarProperty Name="TheoryIAMax" ColumnName="TheoryIAMax" />
+                <ScalarProperty Name="TheoryIAMin" ColumnName="TheoryIAMin" />
+                <ScalarProperty Name="TheoryIAGrace" ColumnName="TheoryIAGrace" />
+                <ScalarProperty Name="TheoryIAMarks" ColumnName="TheoryIAMarks" />
+                <ScalarProperty Name="TheoryTotal" ColumnName="TheoryTotal" />
+                <ScalarProperty Name="TheoryMax" ColumnName="TheoryMax" />
+                <ScalarProperty Name="TheoryMin" ColumnName="TheoryMin" />
+                <ScalarProperty Name="TheoryMarks" ColumnName="TheoryMarks" />
+                <ScalarProperty Name="TheoryGrace" ColumnName="TheoryGrace" />
+                <ScalarProperty Name="SubjectCode" ColumnName="SubjectCode" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+                <ScalarProperty Name="SubGroupName" ColumnName="SubGroupName" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="YearSem" ColumnName="YearSem" />
+                <ScalarProperty Name="DegreeName" ColumnName="DegreeName" />
+                <ScalarProperty Name="CollegeCode" ColumnName="CollegeCode" />
+                <ScalarProperty Name="CollegeName" ColumnName="CollegeName" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="RegisterNumber" ColumnName="RegisterNumber" />
+                <ScalarProperty Name="FinalResultId" ColumnName="FinalResultId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mdbSubjectPaperDetails">
+            <EntityTypeMapping TypeName="MUPRJModel.mdbSubjectPaperDetail">
+              <MappingFragment StoreEntitySet="mdbSubjectPaperDetail">
+                <ScalarProperty Name="PracticalAndVivaMin" ColumnName="PracticalAndVivaMin" />
+                <ScalarProperty Name="PracticalPracticalIAAndVivaVoiceMin" ColumnName="PracticalPracticalIAAndVivaVoiceMin" />
+                <ScalarProperty Name="TotalPassMarks" ColumnName="TotalPassMarks" />
+                <ScalarProperty Name="VivaVoice" ColumnName="VivaVoice" />
+                <ScalarProperty Name="VivaVoiceMin" ColumnName="VivaVoiceMin" />
+                <ScalarProperty Name="PracticalAndPracticalIAMin" ColumnName="PracticalAndPracticalIAMin" />
+                <ScalarProperty Name="TheoryAndTheoryIAMin" ColumnName="TheoryAndTheoryIAMin" />
+                <ScalarProperty Name="PracticalIAMin" ColumnName="PracticalIAMin" />
+                <ScalarProperty Name="PracticalIAMax" ColumnName="PracticalIAMax" />
+                <ScalarProperty Name="PracticalMin" ColumnName="PracticalMin" />
+                <ScalarProperty Name="PracticalMax" ColumnName="PracticalMax" />
+                <ScalarProperty Name="PracticalClassRecordMax" ColumnName="PracticalClassRecordMax" />
+                <ScalarProperty Name="PracticalExamMax" ColumnName="PracticalExamMax" />
+                <ScalarProperty Name="TheoryIAMin" ColumnName="TheoryIAMin" />
+                <ScalarProperty Name="TheoryIAMax" ColumnName="TheoryIAMax" />
+                <ScalarProperty Name="TheoryMin" ColumnName="TheoryMin" />
+                <ScalarProperty Name="TheoryMax" ColumnName="TheoryMax" />
+                <ScalarProperty Name="YearSem" ColumnName="YearSem" />
+                <ScalarProperty Name="SubjectPaperType" ColumnName="SubjectPaperType" />
+                <ScalarProperty Name="SubjectPaperCode" ColumnName="SubjectPaperCode" />
+                <ScalarProperty Name="SubjectPaperName" ColumnName="SubjectPaperName" />
+                <ScalarProperty Name="StreamSubjectCode" ColumnName="StreamSubjectCode" />
+                <ScalarProperty Name="StreamSubjectName" ColumnName="StreamSubjectName" />
+                <ScalarProperty Name="StreamType" ColumnName="StreamType" />
+                <ScalarProperty Name="StreamCode" ColumnName="StreamCode" />
+                <ScalarProperty Name="StreamName" ColumnName="StreamName" />
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MarksCards">
+            <EntityTypeMapping TypeName="MUPRJModel.MarksCard">
+              <MappingFragment StoreEntitySet="MarksCard">
+                <ScalarProperty Name="ExaminationYear" ColumnName="ExaminationYear" />
+                <ScalarProperty Name="MarksCardOrder" ColumnName="MarksCardOrder" />
+                <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
+                <ScalarProperty Name="SubjectType" ColumnName="SubjectType" />
+                <ScalarProperty Name="WordText" ColumnName="WordText" />
+                <ScalarProperty Name="YearText" ColumnName="YearText" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="IsSemesterPass" ColumnName="IsSemesterPass" />
+                <ScalarProperty Name="SemesterAlphaSign" ColumnName="SemesterAlphaSign" />
+                <ScalarProperty Name="SemesterClass" ColumnName="SemesterClass" />
+                <ScalarProperty Name="TotalGP" ColumnName="TotalGP" />
+                <ScalarProperty Name="TotalGPW" ColumnName="TotalGPW" />
+                <ScalarProperty Name="SemesterGPA" ColumnName="SemesterGPA" />
+                <ScalarProperty Name="SemesterPercentage" ColumnName="SemesterPercentage" />
+                <ScalarProperty Name="SemesterTotal" ColumnName="SemesterTotal" />
+                <ScalarProperty Name="SemesterMin" ColumnName="SemesterMin" />
+                <ScalarProperty Name="SemesterMax" ColumnName="SemesterMax" />
+                <ScalarProperty Name="SemesterCredits" ColumnName="SemesterCredits" />
+                <ScalarProperty Name="AlphaSign" ColumnName="AlphaSign" />
+                <ScalarProperty Name="MarksPercent" ColumnName="MarksPercent" />
+                <ScalarProperty Name="IsSubjectPass" ColumnName="IsSubjectPass" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="SubjectGPW" ColumnName="SubjectGPW" />
+                <ScalarProperty Name="SubjectGPA" ColumnName="SubjectGPA" />
+                <ScalarProperty Name="SubjectCredits" ColumnName="SubjectCredits" />
+                <ScalarProperty Name="SubjectMax" ColumnName="SubjectMax" />
+                <ScalarProperty Name="SubjectMin" ColumnName="SubjectMin" />
+                <ScalarProperty Name="TotalMarks" ColumnName="TotalMarks" />
+                <ScalarProperty Name="GroupTotal" ColumnName="GroupTotal" />
+                <ScalarProperty Name="SubGroupTotal" ColumnName="SubGroupTotal" />
+                <ScalarProperty Name="SubjectTotal" ColumnName="SubjectTotal" />
+                <ScalarProperty Name="VivaVoiceMax" ColumnName="VivaVoiceMax" />
+                <ScalarProperty Name="VivaVoiceMin" ColumnName="VivaVoiceMin" />
+                <ScalarProperty Name="VivaVoice" ColumnName="VivaVoice" />
+                <ScalarProperty Name="PracticalNetTotal" ColumnName="PracticalNetTotal" />
+                <ScalarProperty Name="PracticalIATotal" ColumnName="PracticalIATotal" />
+                <ScalarProperty Name="PracticalIAMax" ColumnName="PracticalIAMax" />
+                <ScalarProperty Name="PracticalIAMin" ColumnName="PracticalIAMin" />
+                <ScalarProperty Name="PracticalIAGrace" ColumnName="PracticalIAGrace" />
+                <ScalarProperty Name="PracticalIAMarks" ColumnName="PracticalIAMarks" />
+                <ScalarProperty Name="PracticalTotal" ColumnName="PracticalTotal" />
+                <ScalarProperty Name="PracticalMax" ColumnName="PracticalMax" />
+                <ScalarProperty Name="PracticalMin" ColumnName="PracticalMin" />
+                <ScalarProperty Name="PracticalGrace" ColumnName="PracticalGrace" />
+                <ScalarProperty Name="PracticalMarks" ColumnName="PracticalMarks" />
+                <ScalarProperty Name="TheoryNetTotal" ColumnName="TheoryNetTotal" />
+                <ScalarProperty Name="TheoryIATotal" ColumnName="TheoryIATotal" />
+                <ScalarProperty Name="TheoryIAMax" ColumnName="TheoryIAMax" />
+                <ScalarProperty Name="TheoryIAMin" ColumnName="TheoryIAMin" />
+                <ScalarProperty Name="TheoryIAGrace" ColumnName="TheoryIAGrace" />
+                <ScalarProperty Name="TheoryIAMarks" ColumnName="TheoryIAMarks" />
+                <ScalarProperty Name="TheoryTotal" ColumnName="TheoryTotal" />
+                <ScalarProperty Name="TheoryMax" ColumnName="TheoryMax" />
+                <ScalarProperty Name="TheoryMin" ColumnName="TheoryMin" />
+                <ScalarProperty Name="TheoryMarks" ColumnName="TheoryMarks" />
+                <ScalarProperty Name="TheoryGrace" ColumnName="TheoryGrace" />
+                <ScalarProperty Name="SubjectCode" ColumnName="SubjectCode" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+                <ScalarProperty Name="SubGroupName" ColumnName="SubGroupName" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="YearSem" ColumnName="YearSem" />
+                <ScalarProperty Name="DegreeName" ColumnName="DegreeName" />
+                <ScalarProperty Name="CollegeCode" ColumnName="CollegeCode" />
+                <ScalarProperty Name="CollegeName" ColumnName="CollegeName" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="RegisterNumber" ColumnName="RegisterNumber" />
+                <ScalarProperty Name="UniqueNumber" ColumnName="UniqueNumber" />
+                <ScalarProperty Name="FinalResultId" ColumnName="FinalResultId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OldResultMaps">
+            <EntityTypeMapping TypeName="MUPRJModel.OldResultMap">
+              <MappingFragment StoreEntitySet="OldResultMap">
+                <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
+                <ScalarProperty Name="LastExaminationBatchId" ColumnName="LastExaminationBatchId" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="SemesterWeightage" ColumnName="SemesterWeightage" />
+                <ScalarProperty Name="SemesterCredits" ColumnName="SemesterCredits" />
+                <ScalarProperty Name="SemesterGPA" ColumnName="SemesterGPA" />
+                <ScalarProperty Name="SemesterMarks" ColumnName="SemesterMarks" />
+                <ScalarProperty Name="SemsterMax" ColumnName="SemsterMax" />
+                <ScalarProperty Name="YearSem" ColumnName="YearSem" />
+                <ScalarProperty Name="RegisterNumber" ColumnName="RegisterNumber" />
+                <ScalarProperty Name="OldResultId" ColumnName="OldResultId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

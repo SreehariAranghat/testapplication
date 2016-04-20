@@ -1,0 +1,849 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="INFINITY_MUModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Colleges">
+          <Key>
+            <PropertyRef Name="CollegeId" />
+          </Key>
+          <Property Name="CollegeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="Web" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="State" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="PinCode" Type="int" Nullable="false" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="OwnerShipId" Type="int" />
+          <Property Name="LocationId" Type="int" />
+          <Property Name="CollegeType" Type="int" />
+          <Property Name="CreatedUserId" Type="int" Nullable="false" />
+          <Property Name="ModifiedUserId" Type="int" />
+          <Property Name="DeletedUserId" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="YearOfEstd" Type="int" />
+        </EntityType>
+        <EntityType Name="Courses">
+          <Key>
+            <PropertyRef Name="CourseId" />
+          </Key>
+          <Property Name="CourseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DegreeId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDiscontinued" Type="bit" />
+          <Property Name="TotalSemester" Type="int" Nullable="false" />
+          <Property Name="RevisionNo" Type="real" Nullable="false" />
+          <Property Name="YearIntroduced" Type="int" Nullable="false" />
+          <Property Name="RevisionRemarks" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedUserId" Type="int" Nullable="false" />
+          <Property Name="ModifiedUserId" Type="int" />
+          <Property Name="DeletedUserId" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CourseSubjects">
+          <Key>
+            <PropertyRef Name="CourseSubjectId" />
+          </Key>
+          <Property Name="CourseSubjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseId" Type="int" Nullable="false" />
+          <Property Name="SubjectId" Type="int" Nullable="false" />
+          <Property Name="Semester" Type="int" Nullable="false" />
+          <Property Name="HasExamination" Type="bit" Nullable="false" />
+          <Property Name="TotalTeachingHours" Type="int" Nullable="false" />
+          <Property Name="DegreeConsider" Type="bit" Nullable="false" />
+          <Property Name="IsMandatory" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Degrees">
+          <Key>
+            <PropertyRef Name="DegreeId" />
+          </Key>
+          <Property Name="DegreeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FacultyId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TotalSemester" Type="int" Nullable="false" />
+          <Property Name="DegreeType" Type="int" />
+          <Property Name="RevisionNo" Type="real" Nullable="false" />
+          <Property Name="YearIntroduced" Type="int" Nullable="false" />
+          <Property Name="RevisionRemarks" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="CreatedUserId" Type="int" Nullable="false" />
+          <Property Name="ModifiedUserId" Type="int" />
+          <Property Name="DeletedUserId" Type="int" />
+        </EntityType>
+        <EntityType Name="StudentRepeaterDetails">
+          <Key>
+            <PropertyRef Name="RepeaterId" />
+          </Key>
+          <Property Name="RepeaterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExaminationId" Type="int" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="SubjectId" Type="int" Nullable="false" />
+          <Property Name="CreatedUserId" Type="int" Nullable="false" />
+          <Property Name="ModifiedUserId" Type="int" />
+          <Property Name="DeletedUserId" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RegisterNumber" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateOfBirth" Type="nvarchar(max)" />
+          <Property Name="YearOfAdmission" Type="int" />
+          <Property Name="PassedOutYear" Type="int" />
+          <Property Name="Gender" Type="int" Nullable="false" />
+          <Property Name="YearSem" Type="int" />
+          <Property Name="Nationality" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Mobile" Type="nvarchar(max)" />
+          <Property Name="PermanantAddress" Type="nvarchar(max)" />
+          <Property Name="LocalAddress" Type="nvarchar(max)" />
+          <Property Name="FathersName" Type="nvarchar(max)" />
+          <Property Name="MothersName" Type="nvarchar(max)" />
+          <Property Name="GaurdiansName" Type="nvarchar(max)" />
+          <Property Name="CasteCategoryId" Type="int" Nullable="false" />
+          <Property Name="CollegeId" Type="int" Nullable="false" />
+          <Property Name="DegreeId" Type="int" Nullable="false" />
+          <Property Name="CourseId" Type="int" Nullable="false" />
+          <Property Name="SpecializationId" Type="int" />
+          <Property Name="Photo" Type="int" />
+          <Property Name="CreatedUserId" Type="int" Nullable="false" />
+          <Property Name="ModifiedUserId" Type="int" />
+          <Property Name="DeletedUserId" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SubjectMarks">
+          <Key>
+            <PropertyRef Name="SubjectMarkId" />
+          </Key>
+          <Property Name="SubjectMarkId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Min" Type="int" Nullable="false" />
+          <Property Name="Max" Type="int" Nullable="false" />
+          <Property Name="SubjectComponentId" Type="int" Nullable="false" />
+          <Property Name="SubjectId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subjects">
+          <Key>
+            <PropertyRef Name="SubjectId" />
+          </Key>
+          <Property Name="SubjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Min" Type="int" Nullable="false" />
+          <Property Name="Max" Type="int" Nullable="false" />
+          <Property Name="RevisionNo" Type="real" Nullable="false" />
+          <Property Name="YearIntroduced" Type="int" Nullable="false" />
+          <Property Name="RevisionRemarks" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedUserId" Type="int" Nullable="false" />
+          <Property Name="ModifiedUserId" Type="int" />
+          <Property Name="DeletedUserId" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_StudentRepeaterDetails_CourseSubjects">
+          <End Role="CourseSubjects" Type="Self.CourseSubjects" Multiplicity="1" />
+          <End Role="StudentRepeaterDetails" Type="Self.StudentRepeaterDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourseSubjects">
+              <PropertyRef Name="CourseSubjectId" />
+            </Principal>
+            <Dependent Role="StudentRepeaterDetails">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentRepeaterDetails_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
+          <End Role="StudentRepeaterDetails" Type="Self.StudentRepeaterDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="StudentRepeaterDetails">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK2C15CCA432EB2DDD">
+          <End Role="Subjects" Type="Self.Subjects" Multiplicity="1" />
+          <End Role="CourseSubjects" Type="Self.CourseSubjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="SubjectId" />
+            </Principal>
+            <Dependent Role="CourseSubjects">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK2C15CCA4C4A62763">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+          <End Role="CourseSubjects" Type="Self.CourseSubjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="CourseSubjects">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK707D9BB03A4B9600">
+          <End Role="Degrees" Type="Self.Degrees" Multiplicity="1" />
+          <End Role="Courses" Type="Self.Courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Degrees">
+              <PropertyRef Name="DegreeId" />
+            </Principal>
+            <Dependent Role="Courses">
+              <PropertyRef Name="DegreeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKC278458F32EB2DDD">
+          <End Role="Subjects" Type="Self.Subjects" Multiplicity="1" />
+          <End Role="SubjectMarks" Type="Self.SubjectMarks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="SubjectId" />
+            </Principal>
+            <Dependent Role="SubjectMarks">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKCA48DE5A11E646F4">
+          <End Role="Colleges" Type="Self.Colleges" Multiplicity="1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colleges">
+              <PropertyRef Name="CollegeId" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="CollegeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKCA48DE5A8E3DEFEA">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKCA48DE5A8FBF5BAE">
+          <End Role="Degrees" Type="Self.Degrees" Multiplicity="1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Degrees">
+              <PropertyRef Name="DegreeId" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="DegreeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="INFINITY_MUModelStoreContainer">
+          <EntitySet Name="Colleges" EntityType="Self.Colleges" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CourseSubjects" EntityType="Self.CourseSubjects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Degrees" EntityType="Self.Degrees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentRepeaterDetails" EntityType="Self.StudentRepeaterDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubjectMarks" EntityType="Self.SubjectMarks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_StudentRepeaterDetails_CourseSubjects" Association="Self.FK_StudentRepeaterDetails_CourseSubjects">
+            <End Role="CourseSubjects" EntitySet="CourseSubjects" />
+            <End Role="StudentRepeaterDetails" EntitySet="StudentRepeaterDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentRepeaterDetails_Students" Association="Self.FK_StudentRepeaterDetails_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="StudentRepeaterDetails" EntitySet="StudentRepeaterDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK2C15CCA432EB2DDD" Association="Self.FK2C15CCA432EB2DDD">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="CourseSubjects" EntitySet="CourseSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK2C15CCA4C4A62763" Association="Self.FK2C15CCA4C4A62763">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="CourseSubjects" EntitySet="CourseSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK707D9BB03A4B9600" Association="Self.FK707D9BB03A4B9600">
+            <End Role="Degrees" EntitySet="Degrees" />
+            <End Role="Courses" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FKC278458F32EB2DDD" Association="Self.FKC278458F32EB2DDD">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="SubjectMarks" EntitySet="SubjectMarks" />
+          </AssociationSet>
+          <AssociationSet Name="FKCA48DE5A11E646F4" Association="Self.FKCA48DE5A11E646F4">
+            <End Role="Colleges" EntitySet="Colleges" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FKCA48DE5A8E3DEFEA" Association="Self.FKCA48DE5A8E3DEFEA">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FKCA48DE5A8FBF5BAE" Association="Self.FKCA48DE5A8FBF5BAE">
+            <End Role="Degrees" EntitySet="Degrees" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="INFINITY_MUModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="College">
+          <Key>
+            <PropertyRef Name="CollegeId" />
+          </Key>
+          <Property Name="CollegeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Web" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PinCode" Type="Int32" Nullable="false" />
+          <Property Name="Telephone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerShipId" Type="Int32" />
+          <Property Name="LocationId" Type="Int32" />
+          <Property Name="CollegeType" Type="Int32" />
+          <Property Name="CreatedUserId" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedUserId" Type="Int32" />
+          <Property Name="DeletedUserId" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="YearOfEstd" Type="Int32" />
+          <NavigationProperty Name="Students" Relationship="Self.FKCA48DE5A11E646F4" FromRole="Colleges" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="Cours">
+          <Key>
+            <PropertyRef Name="CourseId" />
+          </Key>
+          <Property Name="CourseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DegreeId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsDiscontinued" Type="Boolean" />
+          <Property Name="TotalSemester" Type="Int32" Nullable="false" />
+          <Property Name="RevisionNo" Type="Single" Nullable="false" />
+          <Property Name="YearIntroduced" Type="Int32" Nullable="false" />
+          <Property Name="RevisionRemarks" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedUserId" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedUserId" Type="Int32" />
+          <Property Name="DeletedUserId" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CourseSubjects" Relationship="Self.FK2C15CCA4C4A62763" FromRole="Courses" ToRole="CourseSubjects" />
+          <NavigationProperty Name="Degree" Relationship="Self.FK707D9BB03A4B9600" FromRole="Courses" ToRole="Degrees" />
+          <NavigationProperty Name="Students" Relationship="Self.FKCA48DE5A8E3DEFEA" FromRole="Courses" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="CourseSubject">
+          <Key>
+            <PropertyRef Name="CourseSubjectId" />
+          </Key>
+          <Property Name="CourseSubjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseId" Type="Int32" Nullable="false" />
+          <Property Name="SubjectId" Type="Int32" Nullable="false" />
+          <Property Name="Semester" Type="Int32" Nullable="false" />
+          <Property Name="HasExamination" Type="Boolean" Nullable="false" />
+          <Property Name="TotalTeachingHours" Type="Int32" Nullable="false" />
+          <Property Name="DegreeConsider" Type="Boolean" Nullable="false" />
+          <Property Name="IsMandatory" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Cours" Relationship="Self.FK2C15CCA4C4A62763" FromRole="CourseSubjects" ToRole="Courses" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK2C15CCA432EB2DDD" FromRole="CourseSubjects" ToRole="Subjects" />
+          <NavigationProperty Name="StudentRepeaterDetails" Relationship="INFINITY_MUModel.FK_StudentRepeaterDetails_CourseSubjects" FromRole="CourseSubject" ToRole="StudentRepeaterDetail" />
+        </EntityType>
+        <EntityType Name="Degree">
+          <Key>
+            <PropertyRef Name="DegreeId" />
+          </Key>
+          <Property Name="DegreeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FacultyId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TotalSemester" Type="Int32" Nullable="false" />
+          <Property Name="DegreeType" Type="Int32" />
+          <Property Name="RevisionNo" Type="Single" Nullable="false" />
+          <Property Name="YearIntroduced" Type="Int32" Nullable="false" />
+          <Property Name="RevisionRemarks" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedUserId" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedUserId" Type="Int32" />
+          <Property Name="DeletedUserId" Type="Int32" />
+          <NavigationProperty Name="Courses" Relationship="Self.FK707D9BB03A4B9600" FromRole="Degrees" ToRole="Courses" />
+          <NavigationProperty Name="Students" Relationship="Self.FKCA48DE5A8FBF5BAE" FromRole="Degrees" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RegisterNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOfBirth" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="YearOfAdmission" Type="Int32" />
+          <Property Name="PassedOutYear" Type="Int32" />
+          <Property Name="Gender" Type="Int32" Nullable="false" />
+          <Property Name="YearSem" Type="Int32" />
+          <Property Name="Nationality" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PermanantAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LocalAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FathersName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MothersName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GaurdiansName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CasteCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="CollegeId" Type="Int32" Nullable="false" />
+          <Property Name="DegreeId" Type="Int32" Nullable="false" />
+          <Property Name="CourseId" Type="Int32" Nullable="false" />
+          <Property Name="SpecializationId" Type="Int32" />
+          <Property Name="Photo" Type="Int32" />
+          <Property Name="CreatedUserId" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedUserId" Type="Int32" />
+          <Property Name="DeletedUserId" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="College" Relationship="Self.FKCA48DE5A11E646F4" FromRole="Students" ToRole="Colleges" />
+          <NavigationProperty Name="Cours" Relationship="Self.FKCA48DE5A8E3DEFEA" FromRole="Students" ToRole="Courses" />
+          <NavigationProperty Name="Degree" Relationship="Self.FKCA48DE5A8FBF5BAE" FromRole="Students" ToRole="Degrees" />
+          <NavigationProperty Name="StudentRepeaterDetails" Relationship="INFINITY_MUModel.FK_StudentRepeaterDetails_Students" FromRole="Student" ToRole="StudentRepeaterDetail" />
+        </EntityType>
+        <EntityType Name="SubjectMark">
+          <Key>
+            <PropertyRef Name="SubjectMarkId" />
+          </Key>
+          <Property Name="SubjectMarkId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Min" Type="Int32" Nullable="false" />
+          <Property Name="Max" Type="Int32" Nullable="false" />
+          <Property Name="SubjectComponentId" Type="Int32" Nullable="false" />
+          <Property Name="SubjectId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Subject" Relationship="Self.FKC278458F32EB2DDD" FromRole="SubjectMarks" ToRole="Subjects" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="SubjectId" />
+          </Key>
+          <Property Name="SubjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Min" Type="Int32" Nullable="false" />
+          <Property Name="Max" Type="Int32" Nullable="false" />
+          <Property Name="RevisionNo" Type="Single" Nullable="false" />
+          <Property Name="YearIntroduced" Type="Int32" Nullable="false" />
+          <Property Name="RevisionRemarks" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedUserId" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedUserId" Type="Int32" />
+          <Property Name="DeletedUserId" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CourseSubjects" Relationship="Self.FK2C15CCA432EB2DDD" FromRole="Subjects" ToRole="CourseSubjects" />
+          <NavigationProperty Name="SubjectMarks" Relationship="Self.FKC278458F32EB2DDD" FromRole="Subjects" ToRole="SubjectMarks" />
+        </EntityType>
+        <Association Name="FKCA48DE5A11E646F4">
+          <End Role="Colleges" Type="Self.College" Multiplicity="1" />
+          <End Role="Students" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colleges">
+              <PropertyRef Name="CollegeId" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="CollegeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK2C15CCA4C4A62763">
+          <End Role="Courses" Type="Self.Cours" Multiplicity="1" />
+          <End Role="CourseSubjects" Type="Self.CourseSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="CourseSubjects">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK707D9BB03A4B9600">
+          <End Role="Degrees" Type="Self.Degree" Multiplicity="1" />
+          <End Role="Courses" Type="Self.Cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Degrees">
+              <PropertyRef Name="DegreeId" />
+            </Principal>
+            <Dependent Role="Courses">
+              <PropertyRef Name="DegreeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKCA48DE5A8E3DEFEA">
+          <End Role="Courses" Type="Self.Cours" Multiplicity="1" />
+          <End Role="Students" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK2C15CCA432EB2DDD">
+          <End Role="Subjects" Type="Self.Subject" Multiplicity="1" />
+          <End Role="CourseSubjects" Type="Self.CourseSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="SubjectId" />
+            </Principal>
+            <Dependent Role="CourseSubjects">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKCA48DE5A8FBF5BAE">
+          <End Role="Degrees" Type="Self.Degree" Multiplicity="1" />
+          <End Role="Students" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Degrees">
+              <PropertyRef Name="DegreeId" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="DegreeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKC278458F32EB2DDD">
+          <End Role="Subjects" Type="Self.Subject" Multiplicity="1" />
+          <End Role="SubjectMarks" Type="Self.SubjectMark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="SubjectId" />
+            </Principal>
+            <Dependent Role="SubjectMarks">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="INFINITY_MUEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Colleges" EntityType="Self.College" />
+          <EntitySet Name="Courses" EntityType="Self.Cours" />
+          <EntitySet Name="CourseSubjects" EntityType="Self.CourseSubject" />
+          <EntitySet Name="Degrees" EntityType="Self.Degree" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="SubjectMarks" EntityType="Self.SubjectMark" />
+          <EntitySet Name="Subjects" EntityType="Self.Subject" />
+          <AssociationSet Name="FKCA48DE5A11E646F4" Association="Self.FKCA48DE5A11E646F4">
+            <End Role="Colleges" EntitySet="Colleges" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK2C15CCA4C4A62763" Association="Self.FK2C15CCA4C4A62763">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="CourseSubjects" EntitySet="CourseSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK707D9BB03A4B9600" Association="Self.FK707D9BB03A4B9600">
+            <End Role="Degrees" EntitySet="Degrees" />
+            <End Role="Courses" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FKCA48DE5A8E3DEFEA" Association="Self.FKCA48DE5A8E3DEFEA">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK2C15CCA432EB2DDD" Association="Self.FK2C15CCA432EB2DDD">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="CourseSubjects" EntitySet="CourseSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FKCA48DE5A8FBF5BAE" Association="Self.FKCA48DE5A8FBF5BAE">
+            <End Role="Degrees" EntitySet="Degrees" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FKC278458F32EB2DDD" Association="Self.FKC278458F32EB2DDD">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="SubjectMarks" EntitySet="SubjectMarks" />
+          </AssociationSet>
+          <EntitySet Name="StudentRepeaterDetails" EntityType="INFINITY_MUModel.StudentRepeaterDetail" />
+          <AssociationSet Name="FK_StudentRepeaterDetails_CourseSubjects" Association="INFINITY_MUModel.FK_StudentRepeaterDetails_CourseSubjects">
+            <End Role="CourseSubject" EntitySet="CourseSubjects" />
+            <End Role="StudentRepeaterDetail" EntitySet="StudentRepeaterDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentRepeaterDetails_Students" Association="INFINITY_MUModel.FK_StudentRepeaterDetails_Students">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="StudentRepeaterDetail" EntitySet="StudentRepeaterDetails" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="StudentRepeaterDetail">
+          <Key>
+            <PropertyRef Name="RepeaterId" />
+          </Key>
+          <Property Name="RepeaterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExaminationId" Type="Int32" Nullable="false" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="SubjectId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedUserId" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedUserId" Type="Int32" />
+          <Property Name="DeletedUserId" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CourseSubject" Relationship="INFINITY_MUModel.FK_StudentRepeaterDetails_CourseSubjects" FromRole="StudentRepeaterDetail" ToRole="CourseSubject" />
+          <NavigationProperty Name="Student" Relationship="INFINITY_MUModel.FK_StudentRepeaterDetails_Students" FromRole="StudentRepeaterDetail" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK_StudentRepeaterDetails_CourseSubjects">
+          <End Type="INFINITY_MUModel.CourseSubject" Role="CourseSubject" Multiplicity="1" />
+          <End Type="INFINITY_MUModel.StudentRepeaterDetail" Role="StudentRepeaterDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourseSubject">
+              <PropertyRef Name="CourseSubjectId" />
+            </Principal>
+            <Dependent Role="StudentRepeaterDetail">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentRepeaterDetails_Students">
+          <End Type="INFINITY_MUModel.Student" Role="Student" Multiplicity="1" />
+          <End Type="INFINITY_MUModel.StudentRepeaterDetail" Role="StudentRepeaterDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="StudentRepeaterDetail">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="INFINITY_MUModelStoreContainer" CdmEntityContainer="INFINITY_MUEntities">
+          <EntitySetMapping Name="Colleges">
+            <EntityTypeMapping TypeName="INFINITY_MUModel.College">
+              <MappingFragment StoreEntitySet="Colleges">
+                <ScalarProperty Name="CollegeId" ColumnName="CollegeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Web" ColumnName="Web" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="OwnerShipId" ColumnName="OwnerShipId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="CollegeType" ColumnName="CollegeType" />
+                <ScalarProperty Name="CreatedUserId" ColumnName="CreatedUserId" />
+                <ScalarProperty Name="ModifiedUserId" ColumnName="ModifiedUserId" />
+                <ScalarProperty Name="DeletedUserId" ColumnName="DeletedUserId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="YearOfEstd" ColumnName="YearOfEstd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="INFINITY_MUModel.Cours">
+              <MappingFragment StoreEntitySet="Courses">
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="DegreeId" ColumnName="DegreeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="IsDiscontinued" ColumnName="IsDiscontinued" />
+                <ScalarProperty Name="TotalSemester" ColumnName="TotalSemester" />
+                <ScalarProperty Name="RevisionNo" ColumnName="RevisionNo" />
+                <ScalarProperty Name="YearIntroduced" ColumnName="YearIntroduced" />
+                <ScalarProperty Name="RevisionRemarks" ColumnName="RevisionRemarks" />
+                <ScalarProperty Name="CreatedUserId" ColumnName="CreatedUserId" />
+                <ScalarProperty Name="ModifiedUserId" ColumnName="ModifiedUserId" />
+                <ScalarProperty Name="DeletedUserId" ColumnName="DeletedUserId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CourseSubjects">
+            <EntityTypeMapping TypeName="INFINITY_MUModel.CourseSubject">
+              <MappingFragment StoreEntitySet="CourseSubjects">
+                <ScalarProperty Name="CourseSubjectId" ColumnName="CourseSubjectId" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
+                <ScalarProperty Name="HasExamination" ColumnName="HasExamination" />
+                <ScalarProperty Name="TotalTeachingHours" ColumnName="TotalTeachingHours" />
+                <ScalarProperty Name="DegreeConsider" ColumnName="DegreeConsider" />
+                <ScalarProperty Name="IsMandatory" ColumnName="IsMandatory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Degrees">
+            <EntityTypeMapping TypeName="INFINITY_MUModel.Degree">
+              <MappingFragment StoreEntitySet="Degrees">
+                <ScalarProperty Name="DegreeId" ColumnName="DegreeId" />
+                <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="TotalSemester" ColumnName="TotalSemester" />
+                <ScalarProperty Name="DegreeType" ColumnName="DegreeType" />
+                <ScalarProperty Name="RevisionNo" ColumnName="RevisionNo" />
+                <ScalarProperty Name="YearIntroduced" ColumnName="YearIntroduced" />
+                <ScalarProperty Name="RevisionRemarks" ColumnName="RevisionRemarks" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="CreatedUserId" ColumnName="CreatedUserId" />
+                <ScalarProperty Name="ModifiedUserId" ColumnName="ModifiedUserId" />
+                <ScalarProperty Name="DeletedUserId" ColumnName="DeletedUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="INFINITY_MUModel.Student">
+              <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="RegisterNumber" ColumnName="RegisterNumber" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="YearOfAdmission" ColumnName="YearOfAdmission" />
+                <ScalarProperty Name="PassedOutYear" ColumnName="PassedOutYear" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="YearSem" ColumnName="YearSem" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="PermanantAddress" ColumnName="PermanantAddress" />
+                <ScalarProperty Name="LocalAddress" ColumnName="LocalAddress" />
+                <ScalarProperty Name="FathersName" ColumnName="FathersName" />
+                <ScalarProperty Name="MothersName" ColumnName="MothersName" />
+                <ScalarProperty Name="GaurdiansName" ColumnName="GaurdiansName" />
+                <ScalarProperty Name="CasteCategoryId" ColumnName="CasteCategoryId" />
+                <ScalarProperty Name="CollegeId" ColumnName="CollegeId" />
+                <ScalarProperty Name="DegreeId" ColumnName="DegreeId" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="SpecializationId" ColumnName="SpecializationId" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="CreatedUserId" ColumnName="CreatedUserId" />
+                <ScalarProperty Name="ModifiedUserId" ColumnName="ModifiedUserId" />
+                <ScalarProperty Name="DeletedUserId" ColumnName="DeletedUserId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubjectMarks">
+            <EntityTypeMapping TypeName="INFINITY_MUModel.SubjectMark">
+              <MappingFragment StoreEntitySet="SubjectMarks">
+                <ScalarProperty Name="SubjectMarkId" ColumnName="SubjectMarkId" />
+                <ScalarProperty Name="Min" ColumnName="Min" />
+                <ScalarProperty Name="Max" ColumnName="Max" />
+                <ScalarProperty Name="SubjectComponentId" ColumnName="SubjectComponentId" />
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subjects">
+            <EntityTypeMapping TypeName="INFINITY_MUModel.Subject">
+              <MappingFragment StoreEntitySet="Subjects">
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Min" ColumnName="Min" />
+                <ScalarProperty Name="Max" ColumnName="Max" />
+                <ScalarProperty Name="RevisionNo" ColumnName="RevisionNo" />
+                <ScalarProperty Name="YearIntroduced" ColumnName="YearIntroduced" />
+                <ScalarProperty Name="RevisionRemarks" ColumnName="RevisionRemarks" />
+                <ScalarProperty Name="CreatedUserId" ColumnName="CreatedUserId" />
+                <ScalarProperty Name="ModifiedUserId" ColumnName="ModifiedUserId" />
+                <ScalarProperty Name="DeletedUserId" ColumnName="DeletedUserId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentRepeaterDetails">
+            <EntityTypeMapping TypeName="INFINITY_MUModel.StudentRepeaterDetail">
+              <MappingFragment StoreEntitySet="StudentRepeaterDetails">
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="DeletedUserId" ColumnName="DeletedUserId" />
+                <ScalarProperty Name="ModifiedUserId" ColumnName="ModifiedUserId" />
+                <ScalarProperty Name="CreatedUserId" ColumnName="CreatedUserId" />
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="ExaminationId" ColumnName="ExaminationId" />
+                <ScalarProperty Name="RepeaterId" ColumnName="RepeaterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8ebe42c15ab24949a0baa051a9599a94" Name="Diagram1">
+        <EntityTypeShape EntityType="MUPRJModel.User" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MUPRJModel.Log" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MUPRJModel.EvaluationBatch" Width="1.5" PointX="0.75" PointY="4.5" />
+        <EntityTypeShape EntityType="MUPRJModel.EvaluationBatchItem" Width="1.5" PointX="3" PointY="4.125" />
+        <AssociationConnector Association="MUPRJModel.FK_EvaluationBatchItems_EvaluationBatches" />
+        <EntityTypeShape EntityType="MUPRJModel.OldMarksTable" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MUPRJModel.OldSemesterMark" Width="1.5" PointX="7.375" PointY="6.75" />
+        <EntityTypeShape EntityType="MUPRJModel.UGFinalResultTable" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MUPRJModel.mdbSubjectPaperDetail" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="MUPRJModel.MarksCard" Width="1.5" PointX="3.375" PointY="10.75" />
+        <EntityTypeShape EntityType="MUPRJModel.OldResultMap" Width="1.5" PointX="5.375" PointY="2.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

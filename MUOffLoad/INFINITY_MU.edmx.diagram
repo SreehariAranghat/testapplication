@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2e63d4ffff524e73a940014860167988" Name="Diagram1">
+        <EntityTypeShape EntityType="INFINITY_MUModel.College" Width="1.5" PointX="6" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="INFINITY_MUModel.Cours" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="INFINITY_MUModel.CourseSubject" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="INFINITY_MUModel.Degree" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="INFINITY_MUModel.Student" Width="1.5" PointX="8.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="INFINITY_MUModel.SubjectMark" Width="1.5" PointX="5.25" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="INFINITY_MUModel.Subject" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="INFINITY_MUModel.FKCA48DE5A11E646F4" ManuallyRouted="false" />
+        <AssociationConnector Association="INFINITY_MUModel.FK2C15CCA4C4A62763" ManuallyRouted="false" />
+        <AssociationConnector Association="INFINITY_MUModel.FK707D9BB03A4B9600" ManuallyRouted="false" />
+        <AssociationConnector Association="INFINITY_MUModel.FKCA48DE5A8E3DEFEA" ManuallyRouted="false" />
+        <AssociationConnector Association="INFINITY_MUModel.FK2C15CCA432EB2DDD" ManuallyRouted="false" />
+        <AssociationConnector Association="INFINITY_MUModel.FKCA48DE5A8FBF5BAE" ManuallyRouted="false" />
+        <AssociationConnector Association="INFINITY_MUModel.FKC278458F32EB2DDD" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="INFINITY_MUModel.StudentRepeaterDetail" Width="1.5" PointX="10.5" PointY="7.25" />
+        <AssociationConnector Association="INFINITY_MUModel.FK_StudentRepeaterDetails_CourseSubjects" />
+        <AssociationConnector Association="INFINITY_MUModel.FK_StudentRepeaterDetails_Students" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

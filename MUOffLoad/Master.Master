@@ -1,0 +1,28 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master.master.cs" Inherits="MUOffLoad.Master" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <script src="scripts/jquery-1.9.1.min.js"></script>
+    <script src="scripts/bootstrap.js"></script>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <h2   style="padding-left:60px;">Mangalore University | BackOffice ( Alpha )</h2>
+    <a href="/Default.aspx" style="margin-left:60px;"  class="btn btn-primary">Home</a>
+    | <asp:Button ID="btnLogOut" runat="server" Text="LogOut" CssClass="btn btn-danger" OnClick="btnLogOut_Click" />
+
+    <div  style="padding:50px;">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>
