@@ -331,6 +331,7 @@
     <Compile Include="MarksCard.cs">
       <DependentUpon>MUPRJ.tt</DependentUpon>
     </Compile>
+    <Compile Include="MarksCardCreator.cs" />
     <Compile Include="MarksCardGenerator.cs" />
     <Compile Include="MarksCardReprint.aspx.cs">
       <DependentUpon>MarksCardReprint.aspx</DependentUpon>
