@@ -152,7 +152,7 @@
                                  <asp:RegularExpressionValidator ID="RegularExpressionValidator7" runat="server" ControlToValidate="txtPractialIAMin" Display="Dynamic" ErrorMessage="* Invalid " ForeColor="Red" ValidationExpression="^[0-9]+$"></asp:RegularExpressionValidator>
                              </td>
                              <td>
-                                 <asp:TextBox ID="txtPractialIAMAx" CssClass="form-control" runat="server" BorderColor="Blue" BorderStyle="Solid" BorderWidth="1px" ForeColor="#3333FF"></asp:TextBox>
+                                 <asp:TextBox ID="txtPractialIAMax" CssClass="form-control" runat="server" BorderColor="Blue" BorderStyle="Solid" BorderWidth="1px" ForeColor="#3333FF"></asp:TextBox>
                                  <asp:RegularExpressionValidator ID="RegularExpressionValidator8" runat="server" ControlToValidate="txtPractialIAMAx" Display="Dynamic" ErrorMessage="* Invalid " ForeColor="Red" ValidationExpression="^[0-9]+$"></asp:RegularExpressionValidator>
                              </td>
                                <td>
@@ -333,15 +333,33 @@
                          </tr>
                          <tr>
                               <td>
-                                  <asp:TextBox ID="txtNetSemesterClass" runat="server" CssClass="form-control"></asp:TextBox>
+                                  <%--<asp:TextBox ID="txtNetSemesterClass" runat="server" CssClass="form-control"></asp:TextBox>--%>
+                                  <asp:DropDownList ID="ddlSelectSemesterClass" runat="server" CssClass="form-control">
+                                      <asp:ListItem Value = "-1"> Select Semester Class</asp:ListItem>
+                                      <asp:ListItem Value = "FIRST CLASS WITH DISTINCTION"> FIRST CLASS WITH DISTINCTION </asp:ListItem>
+                                      <asp:ListItem Value ="FIRST CLASS"> FIRST CLASS </asp:ListItem>
+                                      <asp:ListItem Value ="HIGH SECOND CLASS"> HIGH SECOND CLASS </asp:ListItem>
+                                      <asp:ListItem Value ="SECOND CLASS"> SECOND CLASS </asp:ListItem>
+                                      <asp:ListItem Value ="PASS CLASS"> PASS CLASS </asp:ListItem>
+                                  </asp:DropDownList>
                                   <br />
-                                  <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txtNetSemesterClass" Display="Dynamic" ErrorMessage="* Required" ForeColor="Red" ValidationGroup="FinalSet"></asp:RequiredFieldValidator>
+                                  <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="ddlSelectSemesterClass" Display="Dynamic" ErrorMessage="* Required" ForeColor="Red" ValidationGroup="FinalSet"></asp:RequiredFieldValidator>
                              </td>
                              <td>
 
-                                 <asp:TextBox ID="txtSemesterAlphaSign" runat="server" CssClass="form-control"></asp:TextBox>
-
-                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="txtSemesterAlphaSign" Display="Dynamic" ErrorMessage="* Required" ForeColor="Red" ValidationGroup="FinalSet"></asp:RequiredFieldValidator>
+                                 <%--<asp:TextBox ID="txtSemesterAlphaSign" runat="server" CssClass="form-control"></asp:TextBox>--%>
+                                 <asp:DropDownList ID="ddlSemesterAlphaSign" runat="server" CssClass="form-control">
+                                     <asp:ListItem Value ="-1"> Select Alpha Sign</asp:ListItem>
+                                     <asp:ListItem Value ="A"> A </asp:ListItem>
+                                     <asp:ListItem Value ="A+"> A+ </asp:ListItem>
+                                     <asp:ListItem Value ="A++"> A++ </asp:ListItem>
+                                     <asp:ListItem Value ="B"> B </asp:ListItem>
+                                     <asp:ListItem Value ="B+"> B+ </asp:ListItem>
+                                     <asp:ListItem Value ="C"> C </asp:ListItem>
+                                     <asp:ListItem Value ="D"> D </asp:ListItem>
+                                     <asp:ListItem Value ="O"> O </asp:ListItem>
+                                 </asp:DropDownList>
+                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="ddlSemesterAlphaSign" Display="Dynamic" ErrorMessage="* Required" ForeColor="Red" ValidationGroup="FinalSet"></asp:RequiredFieldValidator>
 
                              </td>
                              <td>
@@ -352,7 +370,15 @@
 
                              </td>
                          </tr>
+                         <tr>
+                             <td>Semester GPA</td>
+                             <td></td>
+                             <td></td>
+                         </tr>
                           <tr>
+                              <td>
+                                  <asp:TextBox ID="txtSemGPA" runat="server" CssClass="form-control"></asp:TextBox>
+                              </td>
                               <td>
                                   <asp:TextBox ID="txtExaminationYear" runat="server" CssClass="form-control">Nov 2015</asp:TextBox>
                               </td>

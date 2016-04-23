@@ -226,6 +226,7 @@
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
     <Content Include="UpdateStudentCollege.aspx" />
+    <Content Include="UpdateStudentName.aspx" />
     <Content Include="UpdateStudentSemester.aspx" />
     <Content Include="UpdateSubjectCode.aspx" />
     <Content Include="UpdateSubjectName.aspx" />
@@ -408,6 +409,13 @@
     </Compile>
     <Compile Include="UpdateStudentCollege.aspx.designer.cs">
       <DependentUpon>UpdateStudentCollege.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateStudentName.aspx.cs">
+      <DependentUpon>UpdateStudentName.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpdateStudentName.aspx.designer.cs">
+      <DependentUpon>UpdateStudentName.aspx</DependentUpon>
     </Compile>
     <Compile Include="UpdateStudentSemester.aspx.cs">
       <DependentUpon>UpdateStudentSemester.aspx</DependentUpon>

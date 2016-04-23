@@ -2314,7 +2314,20 @@ namespace MUOffLoad
                                 col = item.Remarks == "FAIL" ? Color.Red : Color.Black;
                                 col = item.Remarks.ToUpper().Contains("PASSES IN") ? Color.Brown : Color.Black;
 
-                                gfx.DrawString(item.Remarks == "ABSENT" ? "FAIL" : item.Remarks, normal, new SolidBrush(col) , drawablewidth - 45, ystart);
+                                //gfx.DrawString(item.Remarks == "ABSENT" ? "FAIL" : item.Remarks, normal, new SolidBrush(col) , drawablewidth - 45, ystart);
+                                if (item.Remarks.ToUpper().Contains("PASSES IN"))
+                                {
+                                    string[] pass = item.Remarks.Split(' ');
+                                    string year = pass[2] + " " + pass[3];
+
+                                    gfx.DrawString("PASSES IN", normal, new SolidBrush(col), drawablewidth - 50, ystart - 15);
+                                    gfx.DrawString(year, normal, new SolidBrush(col), drawablewidth - 45, ystart);
+                                    
+                                }
+                                else
+                                {
+                                    gfx.DrawString(item.Remarks == "ABSENT" ? "FAIL" : item.Remarks, normal, new SolidBrush(col), drawablewidth - 45, ystart);
+                                }
                             }
                         }
                         else
@@ -2516,7 +2529,20 @@ namespace MUOffLoad
 
                     gfx.DrawString(oldres.Remarks == "FAIL" ? "-" : Math.Round((double)oldres.SemesterWeightage, MidpointRounding.AwayFromZero).ToString(), normal, XBrushes.Black, xstart + 470, ystart + 15);
 
-                    gfx.DrawString(oldres.Remarks == "-" ? "FAIL" : oldres.Remarks, normal, oldres.Remarks == "PASS" ? XBrushes.Black : XBrushes.Red, drawablewidth - 50, ystart + 15);
+                    if (oldres.Remarks.ToUpper().Contains("PASSES IN"))
+                    {
+                        string[] pass = oldres.Remarks.Split(' ');
+                        string year = pass[2] + " " + pass[3];
+
+                        gfx.DrawString("PASSES IN", normal, XBrushes.Brown, xstart + 540, ystart + 15);
+                        gfx.DrawString(year, normal, XBrushes.Brown, xstart + 545, ystart + 23);
+                        ystart += 5;
+                    }
+                    else
+                    {
+                        gfx.DrawString(oldres.Remarks == "-" ? "FAIL" : oldres.Remarks, normal, oldres.Remarks == "PASS" ? XBrushes.Black : XBrushes.Red, drawablewidth - 50, ystart + 15);
+                    }
+                    
                     ystart += 10;
 
                     gfx.DrawLine(XPens.Black, xstart, ystart + 10, drawablewidth, ystart + 10);

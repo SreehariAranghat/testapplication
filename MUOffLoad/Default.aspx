@@ -28,6 +28,7 @@
                 <li><a href="AddRepeaterStudent.aspx">Add Repeat Student</a></li>
                 <li><a href="UpdateStudentSemester.aspx">Update Student Semester</a></li>
                 <li><a href="UpdateStudentCollege.aspx">Update Student College</a></li>
+                <li><a href="UpdateStudentName.aspx">Update Student Name</a></li>
             </ul>
         </div>
     </div>    

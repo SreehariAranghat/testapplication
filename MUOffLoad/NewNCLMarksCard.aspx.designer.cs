@@ -346,13 +346,13 @@ namespace MUOffLoad {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator7;
         
         /// <summary>
-        /// txtPractialIAMAx control.
+        /// txtPractialIAMax control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPractialIAMAx;
+        protected global::System.Web.UI.WebControls.TextBox txtPractialIAMax;
         
         /// <summary>
         /// RegularExpressionValidator8 control.
@@ -688,13 +688,13 @@ namespace MUOffLoad {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator8;
         
         /// <summary>
-        /// txtNetSemesterClass control.
+        /// ddlSelectSemesterClass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNetSemesterClass;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSelectSemesterClass;
         
         /// <summary>
         /// RequiredFieldValidator9 control.
@@ -706,13 +706,13 @@ namespace MUOffLoad {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator9;
         
         /// <summary>
-        /// txtSemesterAlphaSign control.
+        /// ddlSemesterAlphaSign control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSemesterAlphaSign;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSemesterAlphaSign;
         
         /// <summary>
         /// RequiredFieldValidator10 control.
@@ -740,6 +740,15 @@ namespace MUOffLoad {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator11;
+        
+        /// <summary>
+        /// txtSemGPA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSemGPA;
         
         /// <summary>
         /// txtExaminationYear control.

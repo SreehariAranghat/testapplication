@@ -9,11 +9,22 @@ namespace MUOffLoad
 {
     public partial class NewNCLMarksCard : System.Web.UI.Page
     {
+
         MUPRJEntities muentities     = new MUPRJEntities();
         INFINITY_MUEntities entities = new INFINITY_MUEntities();
 
         List<MarksCard> markscard    = new List<MarksCard>();
         List<OldResultMap> resultMap = new List<OldResultMap>();
+
+        //public float totalGPW = 0;
+        //public float totalGPA = 0;
+        //public float totalCredit = 0;
+        //public float totalSubMax = 0;
+        //public float semesterTotal = 0;
+        //public float semesterPercent = 0;
+        //public float semesterGPA = 0;
+        //public string semesterClass = "FAIL";
+        //public string semesterAlphaSign = "D";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -35,93 +46,153 @@ namespace MUOffLoad
         {
             if (!string.IsNullOrEmpty(txtRegisterNumber.Text))
             {
+                bool stumarks = Validation_Marks();
 
-                var student     = entities.Students.FirstOrDefault(s => s.RegisterNumber == txtRegisterNumber.Text);
-
-
-                MarksCard mc        = new MarksCard();
-                mc.AlphaSign        = "";
-                mc.CollegeCode      = student.College.Code;
-                mc.CollegeName      = student.College.Name;
-                mc.CourseCode       = student.Cours.Code;
-                mc.CreatedDate      = DateTime.Now;
-                mc.DegreeName       = student.Degree.Name;
-                mc.GroupName        = "Group-II : Optionals";
-                mc.GroupTotal       = "";
-                mc.IsSemesterPass   = "1";
-                mc.IsSubjectPass    = true;
-                mc.MarksCardOrder   = 0;
-                mc.MarksPercent     = 0;
-                mc.PracticalGrace   = "0";
-                mc.PracticalIAGrace = "0";
-                mc.PracticalIAMarks = txtPractialIAMarks.Text;
-                mc.PracticalIAMax   = txtPractialIAMAx.Text;
-                mc.PracticalIAMin   = txtPractialIAMin.Text;
-                mc.PracticalIATotal = txtPractialIAMarks.Text;
-                mc.PracticalMarks   = txtPractialMarks.Text;
-                mc.PracticalMax     = txtPractialMax.Text;
-                mc.PracticalMin      = txtPracticalMin.Text;
-                mc.PracticalNetTotal = txtPractialNetTotal.Text;
-                mc.PracticalTotal = txtPractialMarks.Text;
-                mc.RegisterNumber = student.RegisterNumber;
-                mc.Remarks = txtRemarks.Text;
-                mc.SemesterAlphaSign = "";
-                mc.SemesterClass = "";
-                mc.SemesterCredits = "";
-                mc.SemesterGPA = "";
-                mc.SemesterMax = 0;
-                mc.SemesterMin = 0;
-                mc.SemesterPercentage = "";
-                mc.SemesterTotal = 0;
-                mc.StudentName = student.FirstName + " " + student.LastName;
-                mc.SubGroupName = "";
-                mc.SubGroupTotal = "";
-                mc.SubjectCode = txtSubjectCode.Text;
-                mc.SubjectCredits = txtCredits.Text;
-                mc.SubjectGPA = txtGPA.Text;
-                mc.SubjectGPW = txtGPW.Text;
-                mc.SubjectMax = int.Parse(txtSubjectMax.Text);
-                mc.SubjectMin = int.Parse(txtSubjectMin.Text);
-                mc.SubjectName = txtSubjectName.Text;
-                mc.SubjectTotal =txtTotalMarks.Text;
-                mc.SubjectType = txtSubjectType.Text;
-                mc.TheoryGrace = "0";
-                mc.TheoryIAGrace = "0";
-                mc.TheoryIAMarks =  txtTheoryIAMarks.Text;
-                mc.TheoryIAMax =    txtTheoryIAMax .Text;
-                mc.TheoryIAMin =    txtTheoryIAMin.Text;
-                mc.TheoryIATotal = txtTheoryIAMarks.Text;
-                mc.TheoryMarks = txtTheoryMarks.Text;
-                mc.TheoryMax = txtTheoryMax.Text;
-                mc.TheoryMin = txtTheoryMin.Text;
-                mc.TheoryNetTotal = txtTheoryNetTotal.Text;
-                mc.TheoryTotal = txtTheoryMarks.Text;
-                mc.TotalMarks = txtTotalMarks.Text;
-                mc.TotalGP = "0";
-                mc.TotalGPW = "0";
-                mc.UniqueNumber = student.Cours.Code + student.StudentId;
-                mc.VivaVoice = txtVivaVoice.Text;
-                mc.VivaVoiceMax = txtVivaVoiceMax.Text;
-                mc.VivaVoiceMin = txtVivaVoiceMin.Text;
-                mc.WordText = "";
-                mc.YearSem = student.YearSem;
-                mc.YearText = txtExaminationMonthYear.Text;
-
-                if (!markscard.Any(d => d.SubjectCode == mc.SubjectCode))
+                if (!stumarks)
                 {
-                    markscard.Add(mc);
 
-                    Session["MC"] = markscard;
+                    var student = entities.Students.FirstOrDefault(s => s.RegisterNumber == txtRegisterNumber.Text);
 
-                    gridMarks.DataSource = markscard;
-                    gridMarks.DataBind();
-                }
-                else
-                {
-                    pnlMessagePanel.Visible = true;
-                    lblMessageBox.Text = "Subject Already Added";
+
+                    MarksCard mc = new MarksCard();
+                    mc.AlphaSign = "";
+                    mc.CollegeCode = student.College.Code;
+                    mc.CollegeName = student.College.Name;
+                    mc.CourseCode = student.Cours.Code;
+                    mc.CreatedDate = DateTime.Now;
+                    mc.DegreeName = student.Degree.Name;
+                    mc.GroupName = "Group-II : Optionals";
+                    mc.GroupTotal = "";
+                    mc.IsSemesterPass = "1";
+                    mc.IsSubjectPass = true;
+                    mc.MarksCardOrder = 0;
+                    mc.MarksPercent = 0;
+                    mc.PracticalGrace = "0";
+                    mc.PracticalIAGrace = "0";
+                    mc.PracticalIAMarks = txtPractialIAMarks.Text;
+                    mc.PracticalIAMax = txtPractialIAMax.Text;
+                    mc.PracticalIAMin = txtPractialIAMin.Text;
+                    mc.PracticalIATotal = txtPractialIAMarks.Text;
+                    mc.PracticalMarks = txtPractialMarks.Text;
+                    mc.PracticalMax = txtPractialMax.Text;
+                    mc.PracticalMin = txtPracticalMin.Text;
+                    mc.PracticalNetTotal = txtPractialNetTotal.Text;
+                    mc.PracticalTotal = txtPractialMarks.Text;
+                    mc.RegisterNumber = student.RegisterNumber;
+                    mc.Remarks = txtRemarks.Text;
+                    mc.SemesterAlphaSign = "";
+                    mc.SemesterClass = "";
+                    mc.SemesterCredits = "";
+                    mc.SemesterGPA = "";
+                    mc.SemesterMax = 0;
+                    mc.SemesterMin = 0;
+                    mc.SemesterPercentage = "";
+                    mc.SemesterTotal = 0;
+                    mc.StudentName = student.FirstName + " " + student.LastName;
+                    mc.SubGroupName = "";
+                    mc.SubGroupTotal = "";
+                    mc.SubjectCode = txtSubjectCode.Text;
+                    mc.SubjectCredits = txtCredits.Text;
+                    mc.SubjectGPA = txtGPA.Text;
+                    mc.SubjectGPW = txtGPW.Text;
+                    mc.SubjectMax = int.Parse(txtSubjectMax.Text);
+                    mc.SubjectMin = int.Parse(txtSubjectMin.Text);
+                    mc.SubjectName = txtSubjectName.Text;
+                    mc.SubjectTotal = txtTotalMarks.Text;
+                    mc.SubjectType = txtSubjectType.Text;
+                    mc.TheoryGrace = "0";
+                    mc.TheoryIAGrace = "0";
+                    mc.TheoryIAMarks = txtTheoryIAMarks.Text;
+                    mc.TheoryIAMax = txtTheoryIAMax.Text;
+                    mc.TheoryIAMin = txtTheoryIAMin.Text;
+                    mc.TheoryIATotal = txtTheoryIAMarks.Text;
+                    mc.TheoryMarks = txtTheoryMarks.Text;
+                    mc.TheoryMax = txtTheoryMax.Text;
+                    mc.TheoryMin = txtTheoryMin.Text;
+                    mc.TheoryNetTotal = txtTheoryNetTotal.Text;
+                    mc.TheoryTotal = txtTheoryMarks.Text;
+                    mc.TotalMarks = txtTotalMarks.Text;
+                    mc.TotalGP = "0";
+                    mc.TotalGPW = "0";
+                    mc.UniqueNumber = student.Cours.Code + student.StudentId;
+                    mc.VivaVoice = txtVivaVoice.Text;
+                    mc.VivaVoiceMax = txtVivaVoiceMax.Text;
+                    mc.VivaVoiceMin = txtVivaVoiceMin.Text;
+                    mc.WordText = "";
+                    mc.YearSem = student.YearSem;
+                    mc.YearText = txtExaminationMonthYear.Text;
+
+                    if (!markscard.Any(d => d.SubjectCode == mc.SubjectCode))
+                    {
+                        markscard.Add(mc);
+
+                        Session["MC"] = markscard;
+
+                        gridMarks.DataSource = markscard;
+                        gridMarks.DataBind();
+                    }
+                    else
+                    {
+                        pnlMessagePanel.Visible = true;
+                        lblMessageBox.Text = "Subject Already Added";
+                    }
                 }
             }
+        }
+
+        protected bool Validation_Marks()
+        {
+            string error = string.Empty;
+            bool err = false;
+            if(int.Parse(txtTheoryMarks.Text) > int.Parse(txtTheoryMax.Text))
+            {
+                error += "Theory Marks Shouldn't Greater Than Theory Max | ";
+                err = true;
+            }
+            if(int.Parse(txtTheoryIAMarks.Text) > int.Parse(txtTheoryIAMax.Text))
+            {
+                error += "Theory IA Marks Shouln't Greater Than Theory IA Max | ";
+                err = true;
+            }
+            if((int.Parse(txtTheoryMarks.Text) + int.Parse(txtTheoryIAMarks.Text)) != int.Parse(txtTheoryNetTotal.Text))
+            {
+                error += "Theory Net Total Not Matched | ";
+                err = true;
+            }
+            if(int.Parse(txtPractialMarks.Text) > int.Parse(txtPractialMax.Text))
+            {
+                error += "Practical Marks Shouldn't Greater Than Practical Max | ";
+                err = true;
+            }
+            if(int.Parse(txtPractialIAMarks.Text) > int.Parse(txtPractialIAMax.Text))
+            {
+                error += "Practical IA Marks Shouldn't Greater Than Practical IA Max | ";
+                err = true;
+            }
+            if((int.Parse(txtPractialMarks.Text) + int.Parse(txtPractialIAMarks.Text)) != int.Parse(txtPractialNetTotal.Text))
+            {
+                error += "Practical Net Total Not Matched | ";
+                err = true;
+            }
+            if(int.Parse(txtVivaVoice.Text) > int.Parse(txtVivaVoiceMax.Text))
+            {
+                error += "VivaVoice Marks Shouldn't Greater Than VivaVoice Max | ";
+                err = true;
+            }
+            if((int.Parse(txtTheoryMarks.Text) + int.Parse(txtTheoryIAMarks.Text) + int.Parse(txtPractialMarks.Text) + int.Parse(txtPractialIAMarks.Text) + int.Parse(txtVivaVoice.Text)) != int.Parse(txtTotalMarks.Text))
+            {
+                error += "Total Marks Not Matched | ";
+                err = true;
+            }
+            if(int.Parse(txtTotalMarks.Text) > int.Parse(txtSubjectMax.Text))
+            {
+                error += "Total Marks Shouldn't Greater Than Subject Maximum | ";
+                err = true;
+            }
+
+            pnlMessagePanel.Visible = true;
+            lblMessageBox.Text = error;
+            return err;
         }
 
         protected void btnSearchStudent_Click(object sender, EventArgs e)
@@ -167,7 +238,7 @@ namespace MUOffLoad
                     txtTheoryMin.Text       = subject.TheoryMin.HasValue ? subject.TheoryMin.Value.ToString() : "";
                     txtVivaVoiceMax.Text    = subject.VivaVoice.HasValue ? subject.VivaVoice.Value.ToString() : "";
                     txtVivaVoiceMin.Text    = subject.VivaVoiceMin.HasValue ? subject.VivaVoiceMin.Value.ToString() : "";
-                    txtPractialIAMAx.Text   = subject.PracticalIAMax.HasValue ? subject.PracticalIAMax.Value.ToString() : "";
+                    txtPractialIAMax.Text   = subject.PracticalIAMax.HasValue ? subject.PracticalIAMax.Value.ToString() : "";
                     txtPractialIAMin.Text   = subject.PracticalIAMin.HasValue ? subject.PracticalIAMin.Value.ToString() : "";
                     txtPractialMax.Text     = subject.PracticalMax.HasValue ? subject.PracticalMax.Value.ToString() : "";
                     txtPracticalMin.Text    = subject.PracticalMin.HasValue ? subject.PracticalMin.Value.ToString() : "";
@@ -288,6 +359,84 @@ namespace MUOffLoad
                 txtCredits.Text     = totalCredits.ToString();
                 txtGPA.Text         = GPA.ToString();
                 txtGPW.Text         = GPW.ToString();
+
+                //semesterTotal += totalMarks;
+                //totalGPW += GPW;
+                //totalGPA += GPA;
+                //totalCredit += totalCredits;
+                //totalSubMax += subjecMax;
+
+                //txtNetCredits.Text = totalCredit.ToString();
+                //txtNetSemesterTotal.Text = semesterTotal.ToString();
+                //txtNetGPA.Text = totalGPA.ToString();
+                //txtNetGPW.Text = totalGPW.ToString();
+                //txtNetSemesterMax.Text = totalSubMax.ToString();
+
+                //semesterPercent = ((((float)semesterTotal / (float)totalSubMax)) * 100);
+                //semesterGPA = ((((float)totalGPW / (float)totalCredit)) * 100);
+
+                //float semesterAggragate = semesterPercent;
+
+                //if (semesterAggragate < 35)
+                //{
+                //    semesterAlphaSign = "D";
+
+                //}
+
+                //if (semesterAggragate >= 35 && semesterAggragate < 50)
+                //{
+                //    semesterAlphaSign = "C";
+
+                //}
+
+                //if (semesterAggragate >= 50 && semesterAggragate < 55)
+                //{
+                //    semesterAlphaSign = "B";
+                //}
+
+                //if (semesterAggragate >= 55 && semesterAggragate < 60)
+                //{
+                //    semesterAlphaSign = "B+";
+                //}
+
+                //if (semesterAggragate >= 60 && semesterAggragate < 70)
+                //{
+                //    semesterAlphaSign = "A";
+                //}
+
+                //if (semesterAggragate >= 70 && semesterAggragate < 80)
+                //{
+                //    semesterAlphaSign = "A+";
+                //}
+
+                //if (semesterAggragate >= 80 && semesterAggragate < 90)
+                //{
+
+                //    semesterAlphaSign = "A++";
+                //}
+
+                //if (semesterAggragate >= 90 && semesterAggragate < 100)
+                //{
+                //    semesterAlphaSign = "O";
+                //}
+
+                //txtSemesterAlphaSign.Text = semesterAlphaSign.ToString();
+
+                //if (semesterAggragate >= 70)
+                //    semesterClass = "FIRST CLASS WITH DISTINCTION";
+                //if (semesterAggragate < 70 && semesterAggragate >= 60)
+                //    semesterClass = "FIRST CLASS";
+                //if (semesterAggragate < 60 && semesterAggragate >= 55)
+                //    semesterClass = "HIGH SECOND CLASS";
+                //if (semesterAggragate < 55 && semesterAggragate >= 50)
+                //    semesterClass = "SECOND CLASS";
+                //if (semesterAggragate < 50 && semesterAggragate >= 40)
+                //    semesterClass = "PASS CLASS";
+
+                //txtNetSemesterClass.Text = semesterClass.ToString();
+                //txtNetSemesterPercentage.Text = semesterPercent.ToString();
+                //txtNetSemesterCredits.Text = "0";
+
             }
         }
 
@@ -355,14 +504,15 @@ namespace MUOffLoad
            foreach (MarksCard m in markscard)
            {
                 m.UniqueNumber       = uniqueNumber.Replace("-","");
-                m.SemesterAlphaSign  = txtSemesterAlphaSign.Text;
-                m.SemesterClass      = txtNetSemesterClass.Text;
+                m.SemesterAlphaSign  = ddlSemesterAlphaSign.SelectedValue.ToString();
+                m.SemesterClass      = ddlSelectSemesterClass.SelectedValue.ToString();
                 m.SemesterCredits    = txtNetCredits.Text;
                 m.SemesterMax        = int.Parse(txtNetSemesterMax.Text);
                 m.SemesterPercentage = txtNetSemesterPercentage.Text;
                 m.SemesterTotal      = int.Parse(txtNetSemesterTotal.Text);
                 m.TotalGP            = txtNetGPA.Text;
                 m.TotalGPW           = txtNetGPW.Text;
+                m.SemesterGPA        = txtSemGPA.Text;
                 m.ExaminationYear    = txtExaminationYear.Text;
 
                 muentities.MarksCards.Add(m);
