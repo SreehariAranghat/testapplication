@@ -40,6 +40,7 @@
         </div>
         <div class="panel-body">
             <ul>
+                <li><a href="ConsolidatedMC.aspx">Consolidated Marks Card</a></li>
                 <li><a href="MarksCardReprint.aspx">Marks Card Reprint</a></li>
                 <li><a href="NewNCLMarksCard.aspx">NCL Marks Card</a></li>
             </ul>
@@ -53,6 +54,7 @@
         </div>
         <div class="panel-body">
             <ul>
+                <li><a href="Revaluation.aspx">PersonalSeeing /  Revaluation</a></li>
                 <li><a href="GetScanBatch.aspx">Retrive Scan Batch</a></li>
             </ul>
         </div>

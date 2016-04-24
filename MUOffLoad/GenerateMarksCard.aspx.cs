@@ -15,9 +15,17 @@ namespace MUOffLoad
             {
                 string uniquenumber = Request["mid"];
                 string path = Server.MapPath(".") + "\\Downloads";
-                string filename = MarksCardGenerator.Generate(uniquenumber, path);
 
-                Response.Redirect("/Downloads/" + filename);
+                if (Request["console"] != null)
+                {
+                    string filename = MarksCardGenerator.GenerateConsolidated(uniquenumber, path);
+                    Response.Redirect("/Downloads/" + filename);
+                }
+                else
+                {
+                    string filename = MarksCardGenerator.Generate(uniquenumber, path);
+                    Response.Redirect("/Downloads/" + filename);
+                }
             }
         }
     }

@@ -44,7 +44,7 @@ namespace MUOffLoad
                 {
                     if ((markscard.DegreeName == "BACHELOR OF SCIENCE" || markscard.DegreeName == "BACHELOR OF ARTS"))
                     {
-
+                        GroupFormatSEM6(markscard.RegisterNumber, markscard.YearSem.Value, ref document);
                     }
                     else
                     {
@@ -52,6 +52,23 @@ namespace MUOffLoad
                         document.Save(path + "\\" + filename);
                     }
                 }
+            }
+
+            return filename;
+        }
+
+        public static string GenerateConsolidated(string uniquenumber, string path)
+        {
+            string filename = Guid.NewGuid().ToString() + ".pdf";
+
+            var entities = new MUPRJEntities();
+            var markscard = entities.MarksCards.FirstOrDefault(d => d.UniqueNumber == uniquenumber);
+
+            if (markscard != null)
+            {
+                PdfDocument document = new PdfDocument();
+                ConsolidatedFormat(markscard.RegisterNumber, markscard.YearSem.Value, ref document);
+                document.Save(path + "\\" + filename);
             }
 
             return filename;
@@ -115,7 +132,7 @@ namespace MUOffLoad
                     gfx.DrawString("Credit Based Fifth Semester Degree Examination Nov 2015", normalboldex, XBrushes.Black, middlepoint - m, ystart + 50);
                 }
 
-                gfx.DrawString("23-Mar-2016", normalboldex, XBrushes.Black, drawablewidth - 100, ystart + 5);
+                gfx.DrawString(datarow.PrintDate != null ? datarow.PrintDate.ToString() : "23-Mar-2016", normalboldex, XBrushes.Black, drawablewidth - 100, ystart + 5);
 
 
 
@@ -594,7 +611,7 @@ namespace MUOffLoad
                     gfx.DrawString("Credit Based Sixth Semester Degree Examination Nov 2015", normalboldex, XBrushes.Black, middlepoint - m, ystart + 50);
                 }
 
-                gfx.DrawString("23-Mar-2016", normalboldex, XBrushes.Black, drawablewidth - 100, ystart + 5);
+                gfx.DrawString(datarow.PrintDate != null ? datarow.PrintDate.ToString() : "23-Mar-2016", normalboldex, XBrushes.Black, drawablewidth - 100, ystart + 5);
 
 
 
@@ -1250,7 +1267,7 @@ namespace MUOffLoad
 
                 gfx.DrawString(datarow.DegreeName.ToUpper(), title, XBrushes.CornflowerBlue, middlepoint - 50, ystart);
                 gfx.DrawString("Credit Based Fifth Semester Degree Examination Nov 2015", normalbold, XBrushes.Black, middlepoint - 120, ystart + 20);
-                gfx.DrawString("23-Mar-2016", normalbold, XBrushes.Black, drawablewidth - 100, ystart);
+                gfx.DrawString(datarow.PrintDate != null ? datarow.PrintDate.ToString() : "23-Mar-2016", normalbold, XBrushes.Black, drawablewidth - 100, ystart);
 
 
 
@@ -1634,7 +1651,7 @@ namespace MUOffLoad
                     gfx.DrawString("Credit Based Seventh Semester Degree Examination Nov 2015", normalboldex, XBrushes.Black, middlepoint - m, ystart + 50);
                 }
 
-                gfx.DrawString("23-Mar-2016", normalboldex, XBrushes.Black, drawablewidth - 100, ystart + 5);
+                gfx.DrawString(datarow.PrintDate != null ? datarow.PrintDate.ToString() : "23-Mar-2016", normalboldex, XBrushes.Black, drawablewidth - 100, ystart + 5);
 
 
 
@@ -2029,6 +2046,486 @@ namespace MUOffLoad
             // document.Save(@"c:\temp\test\" + regno + ".pdf");
         }
 
+        private static void ConsolidatedFormat(string regno, int semester, ref PdfDocument document)
+        {
+            var entiteis = new MUPRJEntities();
+
+            var studentList = entiteis.MarksCards.Where(d => d.RegisterNumber == regno && d.YearSem == semester).OrderBy(d => d.SubjectCode).ToList();
+            var datarow = studentList.First();
+
+            PdfPage page = document.AddPage();
+            page.Size = PdfSharp.PageSize.Legal;
+
+            XFont normal = new XFont("Arial", 9, XFontStyle.Regular);
+            XFont normalbold = new XFont("Arial", 9, XFontStyle.Bold);
+
+            XFont normalex = new XFont("Arial", 10, XFontStyle.Regular);
+            XFont normalboldex = new XFont("Arial", 10, XFontStyle.Bold);
+
+            XFont normalitalic = new XFont("Arial", 9, XFontStyle.BoldItalic);
+            XFont title = new XFont("Arial", 12, XFontStyle.Bold);
+
+            using (XGraphics gfx = XGraphics.FromPdfPage(page))
+            {
+                int xstart = 10;
+                int ystart = 10;
+
+                int drawablewidth = (int)page.Width - 10;
+                int drawableheight = (int)page.Height - 10;
+
+                int middlepoint = drawablewidth / 2;
+
+                gfx.DrawString("No." + datarow.UniqueNumber, normalbold, XBrushes.Black, xstart, ystart);
+
+                ystart += 150;
+
+                XSize s = gfx.MeasureString(datarow.DegreeName.ToUpper(), title);
+                float middle = (float)s.Width / 2;
+
+                gfx.DrawString(datarow.DegreeName.ToUpper(), title, XBrushes.CornflowerBlue, middlepoint - middle, ystart + 30);
+
+                if (semester == 1)
+                {
+                    XSize size = gfx.MeasureString(" Credit Based First Semester Degree Examination Nov 2015", normalboldex);
+                    float m = (float)size.Width / 2;
+                    gfx.DrawString("Credit Based First Semester Degree Examination Nov 2015", normalboldex, XBrushes.Black, middlepoint - m, ystart + 50);
+                }
+
+                if (semester == 2)
+                {
+                    XSize size = gfx.MeasureString(" Credit Based Second Semester Degree Examination Nov 2015", normalboldex);
+                    float m = (float)size.Width / 2;
+                    gfx.DrawString("Credit Based Second Semester Degree Examination Nov 2015", normalboldex, XBrushes.Black, middlepoint - m, ystart + 50);
+                }
+
+                if (semester == 3)
+                {
+                    XSize size = gfx.MeasureString(" Credit Based Third Semester Degree Examination Nov 2015", normalboldex);
+                    float m = (float)size.Width / 2;
+                    gfx.DrawString("Credit Based Third Semester Degree Examination Nov 2015", normalboldex, XBrushes.Black, middlepoint - m, ystart + 50);
+                }
+
+                if (semester == 4)
+                {
+                    XSize size = gfx.MeasureString(" Credit Based Fourth Semester Degree Examination Nov 2015", normalboldex);
+                    float m = (float)size.Width / 2;
+                    gfx.DrawString("Credit Based Fourth Semester Degree Examination Nov 2015", normalboldex, XBrushes.Black, middlepoint - m, ystart + 50);
+                }
+
+
+                if (semester == 5)
+                {
+                    XSize size = gfx.MeasureString(" Credit Based Fifth Semester Degree Examination Nov 2015", normalboldex);
+                    float m = (float)size.Width / 2;
+                    gfx.DrawString("Credit Based Fifth Semester Degree Examination Nov 2015", normalboldex, XBrushes.Black, middlepoint - m, ystart + 50);
+                }
+
+                if (semester == 7)
+                {
+                    XSize size = gfx.MeasureString(" Credit Based Seventh Semester Degree Examination Nov 2015", normalboldex);
+                    float m = (float)size.Width / 2;
+                    gfx.DrawString("Credit Based Seventh Semester Degree Examination Nov 2015", normalboldex, XBrushes.Black, middlepoint - m, ystart + 50);
+                }
+
+                gfx.DrawString(datarow.PrintDate != null ? datarow.PrintDate.ToString() : "23-Mar-2016", normalboldex, XBrushes.Black, drawablewidth - 100, ystart + 5);
+
+
+
+                using (var wc = new WebClient())
+                {
+                    using (var imgStream = new MemoryStream(wc.DownloadData("http://attristech.com:9797/muimages/" + datarow.RegisterNumber + "_p.jpg")))
+                    {
+                        using (var objImage = Image.FromStream(imgStream))
+                        {
+                            XImage image = XImage.FromGdiPlusImage(resizeImage(150, 180, objImage));
+                            gfx.DrawImage(image, xstart - 15, ystart - 15);
+                        }
+                    }
+                }
+
+                ystart += 120;
+
+                gfx.DrawString("Name : ", normalex, XBrushes.Black, xstart, ystart);
+                gfx.DrawString(datarow.StudentName, normalboldex, XBrushes.Black, xstart + 35, ystart);
+
+                gfx.DrawString("Register No. : ", normalex, XBrushes.Black, drawablewidth - 115, ystart);
+                gfx.DrawString(datarow.RegisterNumber, normalboldex, XBrushes.Black, drawablewidth - 50, ystart);
+
+                ystart += 10;
+                gfx.DrawLine(XPens.Black, xstart, ystart, drawablewidth, ystart);
+
+                int startx = xstart;
+                int starty = ystart;
+
+                ystart += 15;
+
+                gfx.DrawString("Subject", normalbold, XBrushes.Black, 150, ystart);
+                gfx.DrawString("Marks", normalbold, XBrushes.Black, 360, ystart);
+                gfx.DrawString("Credit Calculations", normalbold, XBrushes.Black, 450, ystart);
+                gfx.DrawString("Result", normalbold, XBrushes.Black, drawablewidth - 45, ystart);
+
+                gfx.DrawLine(XPens.Black, xstart, ystart + 5, drawablewidth, ystart + 5);
+
+                ystart += 20;
+
+                gfx.DrawString("Name", normal, XBrushes.Black, xstart + 100, ystart);
+                gfx.DrawString("Code", normal, XBrushes.Black, 260, ystart);
+
+                gfx.DrawString("Max", normal, XBrushes.Black, 345, ystart);
+                gfx.DrawString("Min", normal, XBrushes.Black, 380, ystart);
+                gfx.DrawString("Obtained", normal, XBrushes.Black, 405, ystart);
+
+                gfx.DrawString("Cr", normal, XBrushes.Black, 455, ystart);
+                gfx.DrawString("GP", normal, XBrushes.Black, 485, ystart);
+                gfx.DrawString("GPW", normal, XBrushes.Black, 510, ystart);
+
+                gfx.DrawLine(XPens.Black, xstart, ystart + 5, drawablewidth, ystart + 5);
+
+                ystart += 20;
+
+                var groups = studentList.OrderBy(d => d.GroupName).Select(d => d.GroupName).Distinct();
+
+
+                int groupno = 0;
+
+                foreach (var g in groups)
+                {
+                    int i = 0;
+
+                    var studentlist = studentList.Where(d => d.GroupName == g);
+
+                    foreach (var item in g.IndexOf("Foundation Courses") >= 0 ? studentlist.OrderByDescending(d => d.SubjectName) : studentlist.OrderBy(d => d.MarksCardOrder).ThenBy(d => d.SubjectCode))
+                    {
+                        if (i == 0)
+                        {
+                            gfx.DrawString(g, normalbold, XBrushes.Black, xstart + 10, ystart + 5);
+
+                            if (groupno > 0)
+                            {
+                                gfx.DrawLine(XPens.Black, xstart, ystart - 5, drawablewidth, ystart - 5);
+                            }
+
+                        }
+
+
+                        i++;
+
+                        if (item.SubjectName == "Human Rights Gender Equity and Environmental Studies" || item.SubjectName == "Human Rights Gender Equity & Environmental Studies")
+                        {
+                            gfx.DrawString("Human Rights Gender Equity", normal, XBrushes.Black, xstart + 10, ystart + 20);
+                            gfx.DrawString("and Environmental Studies", normal, XBrushes.Black, xstart + 10, ystart + 30);
+                        }
+                        else
+                        {
+                            XSize sd = gfx.MeasureString(item.SubjectName, normal);
+
+                            TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+                            string subejctname = textInfo.ToTitleCase(item.SubjectName.ToLower());
+
+                            subejctname = subejctname.Replace("Iii", "III").Replace("Ii", "II");
+
+                            if (sd.Width > 200)
+                            {
+                                string[] wordsd = subejctname.Split(' ');
+
+                                int currentpos = xstart + 10;
+                                int currenty = ystart + 15;
+                                foreach (string w in wordsd)
+                                {
+                                    XSize wd = gfx.MeasureString(w, normal);
+                                    if (wd.Width < 200 - currentpos)
+                                    {
+                                        gfx.DrawString(w, normal, XBrushes.Black, currentpos, currenty);
+                                        currentpos += (int)wd.Width + 2;
+                                    }
+                                    else
+                                    {
+                                        currentpos = xstart + 10;
+                                        currenty += 10;
+
+                                        gfx.DrawString(w, normal, XBrushes.Black, currentpos, currenty);
+                                        currentpos += (int)wd.Width + 2;
+                                    }
+
+                                }
+
+                            }
+                            else
+                            {
+                                gfx.DrawString(subejctname, normal, XBrushes.Black, xstart + 10, ystart + 20);
+                            }
+
+
+                        }
+
+
+                        gfx.DrawString(item.SubjectCode, normal, XBrushes.Black, 240, ystart + 20);
+
+                        if (item.SubjectType == "TH")
+                        {
+
+                            if (item.SubjectName == "Co-and Extra Curricular Activities")
+                            {
+
+                                gfx.DrawString("IA", normal, XBrushes.Black, 305, ystart + 18);
+                                gfx.DrawString(item.TheoryIAMax, normal, XBrushes.Black, 350, ystart + 18);
+                                gfx.DrawString("-", normal, XBrushes.Black, 385, ystart + 18);
+                                gfx.DrawString(item.TheoryIATotal.ToString(), normal, XBrushes.Black, item.TheoryTotal.ToString() == "-" ? 420 : 415, ystart + 18);
+
+
+                            }
+                            else
+                            {
+                                gfx.DrawString("Theory", normal, XBrushes.Black, 305, ystart + 5);
+                                gfx.DrawString(item.TheoryMax == "0" ? "-" : item.TheoryMax, normal, XBrushes.Black, 350, ystart + 5);
+                                gfx.DrawString(item.TheoryMin == "0" ? "-" : item.TheoryMin, normal, XBrushes.Black, 380, ystart + 5);
+                                gfx.DrawString(item.TheoryTotal.ToString() == "0" ? "-" : item.TheoryTotal.ToString(), normal, XBrushes.Black, item.TheoryTotal.Length == 1 ? 420 : 415, ystart + 5);
+
+                                gfx.DrawLine(XPens.Black, 300, ystart + 8, 445, ystart + 8);
+
+                                gfx.DrawString("IA", normal, XBrushes.Black, 305, ystart + 18);
+                                gfx.DrawString(item.TheoryIAMax, normal, XBrushes.Black, 350, ystart + 18);
+                                gfx.DrawString("-", normal, XBrushes.Black, 380, ystart + 18);
+                                gfx.DrawString(item.TheoryIATotal.ToString(), normal, XBrushes.Black, item.TheoryIATotal.Length == 1 ? 420 : 415, ystart + 18);
+
+                                gfx.DrawLine(XPens.Black, 300, ystart + 20, 445, ystart + 20);
+                            }
+                        }
+                        else if (item.SubjectType == "PR")
+                        {
+                            gfx.DrawString("Practical", normal, XBrushes.Black, 305, ystart + 5);
+                            gfx.DrawString(item.PracticalMax, normal, XBrushes.Black, 350, ystart + 5);
+                            gfx.DrawString(item.PracticalMin, normal, XBrushes.Black, 380, ystart + 5);
+                            gfx.DrawString(item.PracticalTotal.ToString(), normal, XBrushes.Black, item.PracticalTotal.ToString().Length == 1 ? 420 : 415, ystart + 5);
+
+                            gfx.DrawLine(XPens.Black, 300, ystart + 8, 445, ystart + 8);
+
+                            gfx.DrawString("IA", normal, XBrushes.Black, 305, ystart + 18);
+                            gfx.DrawString(item.PracticalIAMax, normal, XBrushes.Black, 350, ystart + 18);
+                            gfx.DrawString("-", normal, XBrushes.Black, 380, ystart + 18);
+                            gfx.DrawString(item.PracticalIATotal.ToString(), normal, XBrushes.Black, item.PracticalIATotal.ToString().Length == 1 ? 420 : 415, ystart + 18);
+
+                            gfx.DrawLine(XPens.Black, 300, ystart + 20, 445, ystart + 20);
+                        }
+                        else if (item.SubjectType == "TNP")
+                        {
+                            gfx.DrawString("Theory", normal, XBrushes.Black, 305, ystart + 5);
+                            gfx.DrawString(item.TheoryMax == "0" ? "-" : item.TheoryMax, normal, XBrushes.Black, 350, ystart + 5);
+                            gfx.DrawString(item.TheoryMin == "0" ? "-" : item.TheoryMin, normal, XBrushes.Black, 380, ystart + 5);
+                            gfx.DrawString(item.TheoryTotal.ToString() == "0" ? "-" : item.TheoryTotal.ToString(), normal, XBrushes.Black, item.TheoryTotal.ToString() == "-" ? 420 : 415, ystart + 5);
+
+                            gfx.DrawLine(XPens.Black, 300, ystart + 8, 445, ystart + 8);
+
+                            gfx.DrawString("IA", normal, XBrushes.Black, 305, ystart + 18);
+                            gfx.DrawString(item.TheoryIAMax, normal, XBrushes.Black, 350, ystart + 18);
+                            gfx.DrawString("-", normal, XBrushes.Black, 385, ystart + 18);
+                            gfx.DrawString(item.TheoryIATotal.ToString(), normal, XBrushes.Black, item.TheoryIATotal.ToString() == "-" ? 420 : 415, ystart + 18);
+
+                            gfx.DrawLine(XPens.Black, 300, ystart + 20, 445, ystart + 20);
+
+                            ///////////////////PRACTICAL////////////
+
+                            gfx.DrawString("Practical", normal, XBrushes.Black, 305, ystart + 30);
+                            gfx.DrawString(item.PracticalMax, normal, XBrushes.Black, 350, ystart + 30);
+                            gfx.DrawString(item.PracticalMin, normal, XBrushes.Black, 380, ystart + 30);
+                            gfx.DrawString(item.PracticalTotal.ToString(), normal, XBrushes.Black, item.PracticalTotal.ToString() == "-" ? 420 : 415, ystart + 30);
+
+                            gfx.DrawLine(XPens.Black, 300, ystart + 32, 445, ystart + 32);
+
+                            gfx.DrawString("IA", normal, XBrushes.Black, 305, ystart + 40);
+                            gfx.DrawString(item.PracticalIAMax, normal, XBrushes.Black, 350, ystart + 40);
+                            gfx.DrawString("-", normal, XBrushes.Black, 385, ystart + 40);
+                            gfx.DrawString(item.PracticalIATotal.ToString(), normal, XBrushes.Black, item.PracticalIATotal.ToString() == "-" ? 420 : 415, ystart + 40);
+
+                            gfx.DrawLine(XPens.Black, 300, ystart + 42, 445, ystart + 42);
+
+                            ystart += 20;
+                        }
+                        else if (item.SubjectType == "PRJ")
+                        {
+                            gfx.DrawString("Practical", normal, XBrushes.Black, 305, ystart + 5);
+                            gfx.DrawString(item.PracticalMax, normal, XBrushes.Black, 350, ystart + 5);
+                            gfx.DrawString(item.PracticalMin, normal, XBrushes.Black, 380, ystart + 5);
+                            gfx.DrawString(item.PracticalTotal.ToString(), normal, XBrushes.Black, 415, ystart + 5);
+
+                            gfx.DrawLine(XPens.Black, 300, ystart + 8, 445, ystart + 8);
+
+                            gfx.DrawString("Viva", normal, XBrushes.Black, 305, ystart + 18);
+                            gfx.DrawString(item.VivaVoiceMax, normal, XBrushes.Black, 350, ystart + 18);
+                            gfx.DrawString("-", normal, XBrushes.Black, 385, ystart + 18);
+                            gfx.DrawString(item.VivaVoice.ToString(), normal, XBrushes.Black, 415, ystart + 18);
+
+                            gfx.DrawLine(XPens.Black, 300, ystart + 20, 445, ystart + 20);
+                        }
+
+                        ystart += 30;
+
+                        if (item.SubjectName != "Co-and Extra Curricular Activities")
+                        {
+
+                            gfx.DrawString("Total", normal, XBrushes.Black, 305, ystart);
+                            gfx.DrawString(item.SubjectMax.ToString(), normal, XBrushes.Black, item.SubjectMax.ToString().Length == 3 ? 347 : 350, ystart);
+                            gfx.DrawString(item.SubjectMin.ToString(), normal, XBrushes.Black, 380, ystart);
+                            gfx.DrawString(item.TotalMarks, normalitalic, XBrushes.Black, item.TheoryTotal.ToString() == "-" ? 420 : 415, ystart);
+
+                            gfx.DrawString(item.SubjectCredits, normal, XBrushes.Black, item.SubjectCredits.ToString().Length == 3 ? 455 : 460, ystart);
+                            gfx.DrawString(item.SubjectGPA, normal, XBrushes.Black, 490, ystart);
+                            gfx.DrawString(item.SubjectGPW, normal, XBrushes.Black, 520, ystart);
+
+                            gfx.DrawLine(XPens.Black, 235, ystart + 5, drawablewidth, ystart + 5);
+
+                            gfx.DrawString(item.YearText, normal, XBrushes.Black, drawablewidth - 50, ystart - 15);
+
+                            if (item.Remarks == "-")
+                            {
+                                gfx.DrawString(item.Remarks, normal, XBrushes.Black, drawablewidth - 35, ystart);
+                            }
+                            else
+                            {
+                                gfx.DrawString(item.Remarks == "ABSENT" ? "FAIL" : item.Remarks, normal, item.Remarks == "PASS" ? XBrushes.Black : XBrushes.Red, drawablewidth - 45, ystart);
+                            }
+                        }
+                        else
+                        {
+                            gfx.DrawLine(XPens.Black, 235, ystart + 5, drawablewidth, ystart + 5);
+
+                            gfx.DrawString(item.SubjectCredits, normal, XBrushes.Black, item.SubjectCredits.ToString().Length == 3 ? 455 : 460, ystart - 10);
+                            gfx.DrawString(item.SubjectGPA, normal, XBrushes.Black, 490, ystart - 10);
+                            gfx.DrawString(item.SubjectGPW, normal, XBrushes.Black, 520, ystart - 10);
+
+                            gfx.DrawLine(XPens.Black, 235, ystart + 5, drawablewidth, ystart + 5);
+
+                            gfx.DrawString(item.YearText, normal, XBrushes.Black, drawablewidth - 50, ystart - 20);
+
+                            if (item.Remarks == "-")
+                            {
+                                gfx.DrawString(item.Remarks, normal, XBrushes.Black, drawablewidth - 35, ystart - 10);
+                            }
+                            else
+                            {
+                                gfx.DrawString(item.Remarks == "ABSENT" ? "FAIL" : item.Remarks, normal, item.Remarks == "PASS" ? XBrushes.Black : XBrushes.Red, drawablewidth - 45, ystart - 10);
+                            }
+                        }
+
+                        ystart += 10;
+                    }
+
+
+
+                    groupno++;
+                }
+
+                gfx.DrawLine(XPens.Black, xstart, ystart - 5, 250, ystart - 5);
+                gfx.DrawLine(XPens.Black, 235, starty + 20, 235, ystart - 5);
+                gfx.DrawLine(XPens.Black, 300, starty, 300, ystart - 5);
+
+                gfx.DrawLine(XPens.Black, 342, starty + 20, 342, ystart + 15);
+                gfx.DrawLine(XPens.Black, 370, starty + 20, 370, ystart + 15);
+                gfx.DrawLine(XPens.Black, 400, starty + 20, 400, ystart + 15);
+
+                gfx.DrawLine(XPens.Black, 445, starty, 445, ystart + 15);
+
+                gfx.DrawLine(XPens.Black, 475, starty + 20, 475, ystart + 15);
+                gfx.DrawLine(XPens.Black, 505, starty + 20, 505, ystart + 15);
+
+                // gfx.DrawLine(XPens.Black, 500, starty + 15, 500, ystart + 10);
+
+                gfx.DrawLine(XPens.Black, drawablewidth - 60, starty, drawablewidth - 60, ystart + 15);
+
+                // ystart -= 30;
+
+                gfx.DrawString("GRAND TOTAL", normalbold, XBrushes.Black, 260, ystart + 8);
+                gfx.DrawString(@datarow.SemesterMax.ToString(), normal, XBrushes.Black, 347, ystart + 8);
+                gfx.DrawString(datarow.SemesterTotal.ToString(), normalbold, XBrushes.CornflowerBlue, 415, ystart + 8);
+
+                gfx.DrawString(datarow.SemesterCredits, normalbold, XBrushes.Black, 455, ystart + 8);
+                gfx.DrawString(datarow.TotalGP, normalbold, XBrushes.Black, 485, ystart + 8);
+                gfx.DrawString(datarow.TotalGPW, normalbold, XBrushes.Black, 514, ystart + 8);
+
+                ystart += 15;
+
+                gfx.DrawLine(XPens.Black, xstart, ystart, drawablewidth, ystart);
+
+                gfx.DrawString("Grand Total (In Words) : ", normal, XBrushes.Black, xstart + 10, ystart + 12);
+
+                if (datarow.SemesterTotal.Value > 0)
+                {
+                    gfx.DrawString(NumberToWords(datarow.SemesterTotal.Value).ToUpper().Replace("AND", "").Replace("-", " "), normalbold, XBrushes.CornflowerBlue, xstart + 110, ystart + 12);
+
+                }
+                else
+                {
+                    gfx.DrawString("-", normalbold, XBrushes.Black, xstart + 110, ystart + 12);
+                }
+
+                ystart += 10;
+
+                string sempercentage = datarow.SemesterPercentage;
+
+                if (datarow.SemesterPercentage.Length > 5)
+                {
+                    sempercentage = datarow.SemesterPercentage.Substring(0, 5);
+                }
+
+                if (datarow.SemesterPercentage.Length == 4)
+                {
+                    sempercentage = datarow.SemesterPercentage + "0";
+                }
+
+                if (datarow.SemesterPercentage.Length == 2)
+                {
+                    sempercentage = datarow.SemesterPercentage + ".00";
+                }
+
+                string semesterGpa = datarow.SemesterGPA;
+
+                if (datarow.SemesterGPA.Length > 4)
+                {
+                    semesterGpa = datarow.SemesterGPA.Substring(0, 4);
+                }
+
+                if (datarow.SemesterGPA.Length == 3)
+                {
+                    semesterGpa = datarow.SemesterGPA + "0";
+                }
+
+                if (datarow.SemesterGPA.Length == 1 && datarow.SemesterGPA != "-")
+                {
+                    semesterGpa = datarow.SemesterGPA + ".00";
+                }
+
+                gfx.DrawLine(XPens.Black, xstart, ystart + 10, drawablewidth, ystart + 10);
+
+                gfx.DrawString("Aggregated Marks : ", normal, XBrushes.Black, xstart + 10, ystart + 20);
+                gfx.DrawString(sempercentage, normalbold, XBrushes.Black, xstart + 90, ystart + 20);
+
+                gfx.DrawString("Grade Point Average : ", normal, XBrushes.Black, 260, ystart + 20);
+                gfx.DrawString(semesterGpa, normalbold, XBrushes.Black, 350, ystart + 20);
+
+                gfx.DrawString("Alpha Grade : ", normal, XBrushes.Black, 450, ystart + 20);
+                gfx.DrawString(datarow.SemesterAlphaSign, normalbold, XBrushes.Black, 510, ystart + 20);
+
+                ystart += 25;
+
+                gfx.DrawLine(XPens.Black, xstart, ystart + 5, drawablewidth, ystart + 5);
+
+                gfx.DrawLine(XPens.Black, xstart, starty, xstart, ystart + 5);
+                gfx.DrawLine(XPens.Black, drawablewidth, starty, drawablewidth, ystart + 5);
+
+                gfx.DrawString("Cr = Credit                       GP = Grade Point                    GPW = Grade Point Weightage                            AB = Absent              EX = Exempted", normal, XBrushes.Black, xstart + 10, ystart + 15);
+
+                gfx.DrawString("Transferred to College Records", normalex, XBrushes.Black, xstart + 10, ystart + 40);
+                gfx.DrawString("Signature of the Principal", normalex, XBrushes.Black, xstart + 20, ystart + 100);
+                gfx.DrawString("(With Seal)", normalex, XBrushes.Black, xstart + 40, ystart + 110);
+                gfx.DrawString("Registrar (Evaluation)", normalex, XBrushes.Black, drawablewidth - 120, ystart + 110);
+            }
+
+
+
+
+            // document.Save(@"c:\temp\test\" + regno + ".pdf");
+        }
+
         private static void GroupedSEM6Format(string regno, int semester, ref PdfDocument document)
         {
             var entiteis = new MUPRJEntities();
@@ -2092,10 +2589,17 @@ namespace MUOffLoad
                 {
                     XSize size = gfx.MeasureString(" Credit Based Sixth Semester Degree Examination "+ examiationyear, normalboldex);
                     float m = (float)size.Width / 2;
-                    gfx.DrawString("Credit Based Sixth Semester Degree Examination " + examiationyear, normalboldex, XBrushes.Black, middlepoint - m, ystart + 50);
+                    if (examiationyear != null)
+                    {
+                        gfx.DrawString("Credit Based Sixth Semester Degree Examination " + examiationyear, new XFont("Arial", 9, XFontStyle.Bold), XBrushes.Black, middlepoint - m + 13, ystart + 50);
+                    }
+                    else
+                    {
+                        gfx.DrawString("Credit Based Sixth Semester Degree Examination " + examiationyear, normalboldex, XBrushes.Black, middlepoint - m, ystart + 50);
+                    }
                 }
 
-                gfx.DrawString("23-Mar-2016", normalboldex, XBrushes.Black, drawablewidth - 100, ystart + 5);
+                gfx.DrawString(datarow.PrintDate != null ? datarow.PrintDate.ToString() : "23-Mar-2016", normalboldex, XBrushes.Black, drawablewidth - 100, ystart + 5);
 
 
 
@@ -2284,9 +2788,19 @@ namespace MUOffLoad
                             gfx.DrawString(item.VivaVoice.ToString(), normal, XBrushes.Black, 415, ystart + 18);
 
                             gfx.DrawLine(XPens.Black, 300, ystart + 20, 445, ystart + 20);
+
+                            if(int.Parse(item.PracticalIAMarks) > 0)
+                            {
+                                gfx.DrawString("IA", normal, XBrushes.Black, 305, ystart + 31);
+                                gfx.DrawString(item.PracticalIAMax, normal, XBrushes.Black, 350, ystart + 31);
+                                gfx.DrawString(item.PracticalIAMin, normal, XBrushes.Black, 380, ystart + 31);
+                                gfx.DrawString(item.PracticalIATotal.ToString(), normal, XBrushes.Black, 415, ystart + 31);
+
+                                gfx.DrawLine(XPens.Black, 300, ystart + 32, 445, ystart + 32);
+                            }
                         }
 
-                        ystart += 30;
+                        ystart += 45;
 
                         if (item.SubjectName != "Co-and Extra Curricular Activities")
                         {
@@ -2534,8 +3048,8 @@ namespace MUOffLoad
                         string[] pass = oldres.Remarks.Split(' ');
                         string year = pass[2] + " " + pass[3];
 
-                        gfx.DrawString("PASSES IN", normal, XBrushes.Brown, xstart + 540, ystart + 15);
-                        gfx.DrawString(year, normal, XBrushes.Brown, xstart + 545, ystart + 23);
+                        gfx.DrawString("PASSES IN", normal, XBrushes.Brown, xstart + 533, ystart + 15);
+                        gfx.DrawString(year, normal, XBrushes.Brown, xstart + 533, ystart + 23);
                         ystart += 5;
                     }
                     else

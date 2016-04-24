@@ -35,5 +35,8 @@ namespace MUOffLoad
         public virtual DbSet<mdbSubjectPaperDetail> mdbSubjectPaperDetails { get; set; }
         public virtual DbSet<MarksCard> MarksCards { get; set; }
         public virtual DbSet<OldResultMap> OldResultMaps { get; set; }
+        public virtual DbSet<DegreeMax> DegreeMaxes { get; set; }
+        public virtual DbSet<GroupName> GroupNames { get; set; }
+        public virtual DbSet<Revaluation> Revaluations { get; set; }
     }
 }

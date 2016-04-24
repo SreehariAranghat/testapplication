@@ -82,5 +82,6 @@ namespace MUOffLoad
         public string CourseCode { get; set; }
         public Nullable<int> MarksCardOrder { get; set; }
         public string ExaminationYear { get; set; }
+        public string PrintDate { get; set; }
     }
 }

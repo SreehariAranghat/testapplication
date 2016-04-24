@@ -514,7 +514,7 @@ namespace MUOffLoad
                 m.TotalGPW           = txtNetGPW.Text;
                 m.SemesterGPA        = txtSemGPA.Text;
                 m.ExaminationYear    = txtExaminationYear.Text;
-
+                m.PrintDate          = txtPrintDate.Text;
                 muentities.MarksCards.Add(m);
            }
 

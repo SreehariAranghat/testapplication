@@ -151,6 +151,7 @@
     <Content Include="AddNewSubject.aspx" />
     <Content Include="AddRepeaterStudent.aspx" />
     <Content Include="AddUser.aspx" />
+    <Content Include="ConsolidatedMC.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -184,6 +185,7 @@
     </Content>
     <Content Include="NewNCLMarksCard.aspx" />
     <Content Include="RemoveCourseSubject.aspx" />
+    <Content Include="Revaluation.aspx" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -259,6 +261,13 @@
     <Compile Include="College.cs">
       <DependentUpon>INFINITY_MU.tt</DependentUpon>
     </Compile>
+    <Compile Include="ConsolidatedMC.aspx.cs">
+      <DependentUpon>ConsolidatedMC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConsolidatedMC.aspx.designer.cs">
+      <DependentUpon>ConsolidatedMC.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Cours.cs">
       <DependentUpon>INFINITY_MU.tt</DependentUpon>
     </Compile>
@@ -274,6 +283,9 @@
     </Compile>
     <Compile Include="Degree.cs">
       <DependentUpon>INFINITY_MU.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DegreeMax.cs">
+      <DependentUpon>MUPRJ.tt</DependentUpon>
     </Compile>
     <Compile Include="DS_GETCOURSESUBJECTS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -302,6 +314,9 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="GroupName.cs">
+      <DependentUpon>MUPRJ.tt</DependentUpon>
     </Compile>
     <Compile Include="INFINITY_MU.Context.cs">
       <AutoGen>True</AutoGen>
@@ -388,6 +403,16 @@
     </Compile>
     <Compile Include="RemoveCourseSubject.aspx.designer.cs">
       <DependentUpon>RemoveCourseSubject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Revaluation.aspx.cs">
+      <DependentUpon>Revaluation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Revaluation.aspx.designer.cs">
+      <DependentUpon>Revaluation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Revaluation.cs">
+      <DependentUpon>MUPRJ.tt</DependentUpon>
     </Compile>
     <Compile Include="Student.cs">
       <DependentUpon>INFINITY_MU.tt</DependentUpon>

@@ -16,6 +16,9 @@
         <EntityTypeShape EntityType="MUPRJModel.mdbSubjectPaperDetail" Width="1.5" PointX="0.75" PointY="10.75" />
         <EntityTypeShape EntityType="MUPRJModel.MarksCard" Width="1.5" PointX="3.375" PointY="10.75" />
         <EntityTypeShape EntityType="MUPRJModel.OldResultMap" Width="1.5" PointX="5.375" PointY="2.75" />
+        <EntityTypeShape EntityType="MUPRJModel.DegreeMax" Width="1.5" PointX="5.375" PointY="10.75" />
+        <EntityTypeShape EntityType="MUPRJModel.GroupName" Width="1.5" PointX="11.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MUPRJModel.Revaluation" Width="1.5" PointX="11.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

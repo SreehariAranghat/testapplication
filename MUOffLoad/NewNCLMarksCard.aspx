@@ -372,12 +372,15 @@
                          </tr>
                          <tr>
                              <td>Semester GPA</td>
-                             <td></td>
+                             <td>Print Date</td>
                              <td></td>
                          </tr>
                           <tr>
                               <td>
                                   <asp:TextBox ID="txtSemGPA" runat="server" CssClass="form-control"></asp:TextBox>
+                              </td>
+                              <td>
+                                  <asp:TextBox ID="txtPrintDate" runat="server" CssClass="form-control" placeholder="DD-MMM-YYYY"></asp:TextBox>
                               </td>
                               <td>
                                   <asp:TextBox ID="txtExaminationYear" runat="server" CssClass="form-control">Nov 2015</asp:TextBox>
