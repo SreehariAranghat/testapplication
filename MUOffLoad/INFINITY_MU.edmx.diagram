@@ -22,6 +22,10 @@
         <EntityTypeShape EntityType="INFINITY_MUModel.StudentRepeaterDetail" Width="1.5" PointX="10.5" PointY="7.25" />
         <AssociationConnector Association="INFINITY_MUModel.FK_StudentRepeaterDetails_CourseSubjects" />
         <AssociationConnector Association="INFINITY_MUModel.FK_StudentRepeaterDetails_Students" />
+        <EntityTypeShape EntityType="INFINITY_MUModel.StudentBill" Width="1.5" PointX="10.5" PointY="11.625" />
+        <AssociationConnector Association="INFINITY_MUModel.FK_StudentBills_Students" />
+        <EntityTypeShape EntityType="INFINITY_MUModel.SubjectComponent" Width="1.5" PointX="10.375" PointY="1" />
+        <AssociationConnector Association="INFINITY_MUModel.FKC278458FB8947303" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

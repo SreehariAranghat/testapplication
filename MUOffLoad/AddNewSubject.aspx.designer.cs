@@ -139,6 +139,42 @@ namespace MUOffLoad {
         protected global::System.Web.UI.WebControls.TextBox txtPractialIAMin;
         
         /// <summary>
+        /// txtProjectMax control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtProjectMax;
+        
+        /// <summary>
+        /// txtProjectMin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtProjectMin;
+        
+        /// <summary>
+        /// txtVivaMax control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtVivaMax;
+        
+        /// <summary>
+        /// txtVivaMin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtVivaMin;
+        
+        /// <summary>
         /// Button1 control.
         /// </summary>
         /// <remarks>

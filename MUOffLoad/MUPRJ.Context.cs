@@ -38,5 +38,6 @@ namespace MUOffLoad
         public virtual DbSet<DegreeMax> DegreeMaxes { get; set; }
         public virtual DbSet<GroupName> GroupNames { get; set; }
         public virtual DbSet<Revaluation> Revaluations { get; set; }
+        public virtual DbSet<BookletDetail> BookletDetails { get; set; }
     }
 }

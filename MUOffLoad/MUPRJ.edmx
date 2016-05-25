@@ -5,6 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="MUPRJModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BookletDetails">
+          <Key>
+            <PropertyRef Name="IndexID" />
+          </Key>
+          <Property Name="IndexID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="CenterCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="CenterName" Type="nvarchar(max)" />
+          <Property Name="SubjectCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Count" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="DegreeMax">
           <Key>
             <PropertyRef Name="DegreeID" />
@@ -246,67 +257,11 @@ warning 6002: The table/view 'MUPRJ.dbo.OldSemesterMarks' does not have a primar
           <Property Name="SemesterPercentage" Type="int" Nullable="false" />
           <Property Name="IsSemesterPass" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="Revaluation">
-          <Key>
-            <PropertyRef Name="ResultID" />
-          </Key>
-          <Property Name="ResultID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CourseName" Type="nvarchar(max)" />
-          <Property Name="Semester" Type="nvarchar(max)" />
-          <Property Name="RegisterNumber" Type="nvarchar" MaxLength="50" />
-          <Property Name="StudentName" Type="nvarchar(max)" />
-          <Property Name="SubjectCode" Type="nvarchar(max)" />
-          <Property Name="SubjectName" Type="nvarchar(max)" />
-          <Property Name="DummyNo" Type="nvarchar(max)" />
-          <Property Name="BatchNo" Type="nvarchar(max)" />
-          <Property Name="IsPersonalSeeing" Type="bit" />
-          <Property Name="IsRevaluation" Type="bit" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'MUPRJ.dbo.UGFinalResultTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UGFinalResultTable">
           <Key>
             <PropertyRef Name="FinalResultId" />
-            <PropertyRef Name="RegisterNumber" />
-            <PropertyRef Name="StudentName" />
-            <PropertyRef Name="CollegeName" />
-            <PropertyRef Name="CollegeCode" />
-            <PropertyRef Name="DegreeName" />
-            <PropertyRef Name="YearSem" />
-            <PropertyRef Name="GroupName" />
-            <PropertyRef Name="SubjectName" />
-            <PropertyRef Name="SubjectCode" />
-            <PropertyRef Name="TheoryGrace" />
-            <PropertyRef Name="TheoryMarks" />
-            <PropertyRef Name="TheoryMin" />
-            <PropertyRef Name="TheoryMax" />
-            <PropertyRef Name="TheoryTotal" />
-            <PropertyRef Name="TheoryIAMarks" />
-            <PropertyRef Name="TheoryIAGrace" />
-            <PropertyRef Name="TheoryIAMin" />
-            <PropertyRef Name="TheoryIAMax" />
-            <PropertyRef Name="TheoryIATotal" />
-            <PropertyRef Name="TheoryNetTotal" />
-            <PropertyRef Name="PracticalMarks" />
-            <PropertyRef Name="PracticalGrace" />
-            <PropertyRef Name="PracticalMin" />
-            <PropertyRef Name="PracticalMax" />
-            <PropertyRef Name="PracticalTotal" />
-            <PropertyRef Name="PracticalIAMarks" />
-            <PropertyRef Name="PracticalIAGrace" />
-            <PropertyRef Name="PracticalIAMin" />
-            <PropertyRef Name="PracticalIAMax" />
-            <PropertyRef Name="PracticalIATotal" />
-            <PropertyRef Name="PracticalNetTotal" />
-            <PropertyRef Name="VivaVoice" />
-            <PropertyRef Name="VivaVoiceMin" />
-            <PropertyRef Name="VivaVoiceMax" />
-            <PropertyRef Name="TotalMarks" />
-            <PropertyRef Name="SubjectMin" />
-            <PropertyRef Name="SubjectMax" />
-            <PropertyRef Name="CreatedDate" />
           </Key>
-          <Property Name="FinalResultId" Type="int" Nullable="false" />
+          <Property Name="FinalResultId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RegisterNumber" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="StudentName" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="CollegeName" Type="varchar" MaxLength="500" Nullable="false" />
@@ -390,6 +345,7 @@ warning 6002: The table/view 'MUPRJ.dbo.UGFinalResultTable' does not have a prim
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="MUPRJModelStoreContainer">
+          <EntitySet Name="BookletDetails" EntityType="Self.BookletDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DegreeMax" EntityType="Self.DegreeMax" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EvaluationBatches" EntityType="Self.EvaluationBatches" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EvaluationBatchItems" EntityType="Self.EvaluationBatchItems" Schema="dbo" store:Type="Tables" />
@@ -397,7 +353,7 @@ warning 6002: The table/view 'MUPRJ.dbo.UGFinalResultTable' does not have a prim
           <EntitySet Name="Logs" EntityType="Self.Logs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MarksCard" EntityType="Self.MarksCard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OldResultMap" EntityType="Self.OldResultMap" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Revaluation" EntityType="Self.Revaluation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UGFinalResultTable" EntityType="Self.UGFinalResultTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mdbSubjectPaperDetail" EntityType="Self.mdbSubjectPaperDetail" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -446,70 +402,6 @@ warning 6002: The table/view 'MUPRJ.dbo.UGFinalResultTable' does not have a prim
     [OldSemesterMarks].[IsSemesterPass] AS [IsSemesterPass]
     FROM [dbo].[OldSemesterMarks] AS [OldSemesterMarks]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="UGFinalResultTable" EntityType="Self.UGFinalResultTable" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [UGFinalResultTable].[FinalResultId] AS [FinalResultId], 
-    [UGFinalResultTable].[RegisterNumber] AS [RegisterNumber], 
-    [UGFinalResultTable].[StudentName] AS [StudentName], 
-    [UGFinalResultTable].[CollegeName] AS [CollegeName], 
-    [UGFinalResultTable].[CollegeCode] AS [CollegeCode], 
-    [UGFinalResultTable].[DegreeName] AS [DegreeName], 
-    [UGFinalResultTable].[YearSem] AS [YearSem], 
-    [UGFinalResultTable].[GroupName] AS [GroupName], 
-    [UGFinalResultTable].[SubGroupName] AS [SubGroupName], 
-    [UGFinalResultTable].[SubjectName] AS [SubjectName], 
-    [UGFinalResultTable].[SubjectCode] AS [SubjectCode], 
-    [UGFinalResultTable].[TheoryGrace] AS [TheoryGrace], 
-    [UGFinalResultTable].[TheoryMarks] AS [TheoryMarks], 
-    [UGFinalResultTable].[TheoryMin] AS [TheoryMin], 
-    [UGFinalResultTable].[TheoryMax] AS [TheoryMax], 
-    [UGFinalResultTable].[TheoryTotal] AS [TheoryTotal], 
-    [UGFinalResultTable].[TheoryIAMarks] AS [TheoryIAMarks], 
-    [UGFinalResultTable].[TheoryIAGrace] AS [TheoryIAGrace], 
-    [UGFinalResultTable].[TheoryIAMin] AS [TheoryIAMin], 
-    [UGFinalResultTable].[TheoryIAMax] AS [TheoryIAMax], 
-    [UGFinalResultTable].[TheoryIATotal] AS [TheoryIATotal], 
-    [UGFinalResultTable].[TheoryNetTotal] AS [TheoryNetTotal], 
-    [UGFinalResultTable].[PracticalMarks] AS [PracticalMarks], 
-    [UGFinalResultTable].[PracticalGrace] AS [PracticalGrace], 
-    [UGFinalResultTable].[PracticalMin] AS [PracticalMin], 
-    [UGFinalResultTable].[PracticalMax] AS [PracticalMax], 
-    [UGFinalResultTable].[PracticalTotal] AS [PracticalTotal], 
-    [UGFinalResultTable].[PracticalIAMarks] AS [PracticalIAMarks], 
-    [UGFinalResultTable].[PracticalIAGrace] AS [PracticalIAGrace], 
-    [UGFinalResultTable].[PracticalIAMin] AS [PracticalIAMin], 
-    [UGFinalResultTable].[PracticalIAMax] AS [PracticalIAMax], 
-    [UGFinalResultTable].[PracticalIATotal] AS [PracticalIATotal], 
-    [UGFinalResultTable].[PracticalNetTotal] AS [PracticalNetTotal], 
-    [UGFinalResultTable].[VivaVoice] AS [VivaVoice], 
-    [UGFinalResultTable].[VivaVoiceMin] AS [VivaVoiceMin], 
-    [UGFinalResultTable].[VivaVoiceMax] AS [VivaVoiceMax], 
-    [UGFinalResultTable].[SubjectTotal] AS [SubjectTotal], 
-    [UGFinalResultTable].[SubGroupTotal] AS [SubGroupTotal], 
-    [UGFinalResultTable].[GroupTotal] AS [GroupTotal], 
-    [UGFinalResultTable].[TotalMarks] AS [TotalMarks], 
-    [UGFinalResultTable].[SubjectMin] AS [SubjectMin], 
-    [UGFinalResultTable].[SubjectMax] AS [SubjectMax], 
-    [UGFinalResultTable].[SubjectCredits] AS [SubjectCredits], 
-    [UGFinalResultTable].[SubjectGPA] AS [SubjectGPA], 
-    [UGFinalResultTable].[SubjectGPW] AS [SubjectGPW], 
-    [UGFinalResultTable].[CreatedDate] AS [CreatedDate], 
-    [UGFinalResultTable].[IsSubjectPass] AS [IsSubjectPass], 
-    [UGFinalResultTable].[MarksPercent] AS [MarksPercent], 
-    [UGFinalResultTable].[AlphaSign] AS [AlphaSign], 
-    [UGFinalResultTable].[SemesterCredits] AS [SemesterCredits], 
-    [UGFinalResultTable].[SemesterMax] AS [SemesterMax], 
-    [UGFinalResultTable].[SemesterMin] AS [SemesterMin], 
-    [UGFinalResultTable].[SemesterTotal] AS [SemesterTotal], 
-    [UGFinalResultTable].[SemesterPercentage] AS [SemesterPercentage], 
-    [UGFinalResultTable].[SemesterGPA] AS [SemesterGPA], 
-    [UGFinalResultTable].[SemesterClass] AS [SemesterClass], 
-    [UGFinalResultTable].[SemesterAlphaSign] AS [SemesterAlphaSign], 
-    [UGFinalResultTable].[IsSemesterPass] AS [IsSemesterPass], 
-    [UGFinalResultTable].[Remarks] AS [Remarks], 
-    [UGFinalResultTable].[YearText] AS [YearText]
-    FROM [dbo].[UGFinalResultTable] AS [UGFinalResultTable]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_EvaluationBatchItems_EvaluationBatches" Association="Self.FK_EvaluationBatchItems_EvaluationBatches">
             <End Role="EvaluationBatches" EntitySet="EvaluationBatches" />
             <End Role="EvaluationBatchItems" EntitySet="EvaluationBatchItems" />
@@ -547,6 +439,7 @@ warning 6002: The table/view 'MUPRJ.dbo.UGFinalResultTable' does not have a prim
           <EntitySet Name="DegreeMaxes" EntityType="MUPRJModel.DegreeMax" />
           <EntitySet Name="GroupNames" EntityType="MUPRJModel.GroupName" />
           <EntitySet Name="Revaluations" EntityType="MUPRJModel.Revaluation" />
+          <EntitySet Name="BookletDetails" EntityType="MUPRJModel.BookletDetail" />
         </EntityContainer>
         <EntityType Name="Log">
           <Key>
@@ -896,16 +789,27 @@ warning 6002: The table/view 'MUPRJ.dbo.UGFinalResultTable' does not have a prim
             <PropertyRef Name="ResultID" />
           </Key>
           <Property Name="ResultID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CourseName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Semester" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RegisterNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="StudentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SubjectCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SubjectName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DummyNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="BatchNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsPersonalSeeing" Type="Boolean" />
-          <Property Name="IsRevaluation" Type="Boolean" />
+          <Property Name="IsPersonalSeeing" Type="Int32" />
+          <Property Name="IsRevaluation" Type="Int32" />
+          <Property Name="CourseName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Semester" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BookletDetail">
+          <Key>
+            <PropertyRef Name="IndexID" />
+          </Key>
+          <Property Name="IndexID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CenterCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CenterName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubjectCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1220,20 +1124,15 @@ warning 6002: The table/view 'MUPRJ.dbo.UGFinalResultTable' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Revaluations">
-            <EntityTypeMapping TypeName="MUPRJModel.Revaluation">
-              <MappingFragment StoreEntitySet="Revaluation">
-                <ScalarProperty Name="IsRevaluation" ColumnName="IsRevaluation" />
-                <ScalarProperty Name="IsPersonalSeeing" ColumnName="IsPersonalSeeing" />
-                <ScalarProperty Name="BatchNo" ColumnName="BatchNo" />
-                <ScalarProperty Name="DummyNo" ColumnName="DummyNo" />
-                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+          <EntitySetMapping Name="BookletDetails">
+            <EntityTypeMapping TypeName="MUPRJModel.BookletDetail">
+              <MappingFragment StoreEntitySet="BookletDetails">
+                <ScalarProperty Name="Count" ColumnName="Count" />
                 <ScalarProperty Name="SubjectCode" ColumnName="SubjectCode" />
-                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
-                <ScalarProperty Name="RegisterNumber" ColumnName="RegisterNumber" />
-                <ScalarProperty Name="Semester" ColumnName="Semester" />
-                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
-                <ScalarProperty Name="ResultID" ColumnName="ResultID" />
+                <ScalarProperty Name="CenterName" ColumnName="CenterName" />
+                <ScalarProperty Name="CenterCode" ColumnName="CenterCode" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IndexID" ColumnName="IndexID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

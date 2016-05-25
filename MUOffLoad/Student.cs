@@ -18,6 +18,7 @@ namespace MUOffLoad
         public Student()
         {
             this.StudentRepeaterDetails = new HashSet<StudentRepeaterDetail>();
+            this.StudentBills = new HashSet<StudentBill>();
         }
     
         public int StudentId { get; set; }
@@ -56,5 +57,7 @@ namespace MUOffLoad
         public virtual Degree Degree { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StudentRepeaterDetail> StudentRepeaterDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StudentBill> StudentBills { get; set; }
     }
 }

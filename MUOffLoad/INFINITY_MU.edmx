@@ -84,6 +84,30 @@
           <Property Name="ModifiedUserId" Type="int" />
           <Property Name="DeletedUserId" Type="int" />
         </EntityType>
+        <EntityType Name="StudentBills">
+          <Key>
+            <PropertyRef Name="BillId" />
+          </Key>
+          <Property Name="BillId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExaminationId" Type="int" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="EligibleForConcession" Type="bit" Nullable="false" />
+          <Property Name="BillSegment" Type="nvarchar(max)" />
+          <Property Name="IsEdited" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsCreatedManually" Type="bit" Nullable="false" />
+          <Property Name="HallticketUniqueNumber" Type="nvarchar(max)" />
+          <Property Name="BatchId" Type="int" />
+          <Property Name="Total" Type="float" Nullable="false" />
+          <Property Name="ApprovalStatus" Type="int" Nullable="false" />
+          <Property Name="RegistrationStatus" Type="int" Nullable="false" />
+          <Property Name="CreatedUserId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedUserId" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedUserId" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="StudentRepeaterDetails">
           <Key>
             <PropertyRef Name="RepeaterId" />
@@ -104,29 +128,47 @@
             <PropertyRef Name="StudentId" />
           </Key>
           <Property Name="StudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="MiddleName" Type="nvarchar(max)" />
-          <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="RegisterNumber" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="DateOfBirth" Type="nvarchar(max)" />
+          <Property Name="FirstName" Type="varchar(max)" Nullable="false" />
+          <Property Name="MiddleName" Type="varchar(max)" />
+          <Property Name="LastName" Type="varchar(max)" Nullable="false" />
+          <Property Name="RegisterNumber" Type="varchar(max)" Nullable="false" />
+          <Property Name="DateOfBirth" Type="varchar(max)" />
           <Property Name="YearOfAdmission" Type="int" />
           <Property Name="PassedOutYear" Type="int" />
           <Property Name="Gender" Type="int" Nullable="false" />
           <Property Name="YearSem" Type="int" />
-          <Property Name="Nationality" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Email" Type="nvarchar(max)" />
-          <Property Name="Mobile" Type="nvarchar(max)" />
-          <Property Name="PermanantAddress" Type="nvarchar(max)" />
-          <Property Name="LocalAddress" Type="nvarchar(max)" />
-          <Property Name="FathersName" Type="nvarchar(max)" />
-          <Property Name="MothersName" Type="nvarchar(max)" />
-          <Property Name="GaurdiansName" Type="nvarchar(max)" />
+          <Property Name="Nationality" Type="varchar(max)" Nullable="false" />
+          <Property Name="Email" Type="varchar(max)" />
+          <Property Name="Mobile" Type="varchar(max)" />
+          <Property Name="PermanantAddress" Type="varchar(max)" />
+          <Property Name="LocalAddress" Type="varchar(max)" />
+          <Property Name="FathersName" Type="varchar(max)" />
+          <Property Name="MothersName" Type="varchar(max)" />
+          <Property Name="GaurdiansName" Type="varchar(max)" />
           <Property Name="CasteCategoryId" Type="int" Nullable="false" />
           <Property Name="CollegeId" Type="int" Nullable="false" />
           <Property Name="DegreeId" Type="int" Nullable="false" />
           <Property Name="CourseId" Type="int" Nullable="false" />
           <Property Name="SpecializationId" Type="int" />
           <Property Name="Photo" Type="int" />
+          <Property Name="CreatedUserId" Type="int" Nullable="false" />
+          <Property Name="ModifiedUserId" Type="int" />
+          <Property Name="DeletedUserId" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SubjectComponents">
+          <Key>
+            <PropertyRef Name="SubjectComponentId" />
+          </Key>
+          <Property Name="SubjectComponentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HasExamination" Type="bit" Nullable="false" />
+          <Property Name="RevisionNo" Type="real" Nullable="false" />
+          <Property Name="YearIntroduced" Type="int" Nullable="false" />
+          <Property Name="RevisionRemarks" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="CreatedUserId" Type="int" Nullable="false" />
           <Property Name="ModifiedUserId" Type="int" />
           <Property Name="DeletedUserId" Type="int" />
@@ -163,6 +205,18 @@
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="DeletedDate" Type="datetime" />
         </EntityType>
+        <Association Name="FK_StudentBills_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
+          <End Role="StudentBills" Type="Self.StudentBills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="StudentBills">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_StudentRepeaterDetails_CourseSubjects">
           <End Role="CourseSubjects" Type="Self.CourseSubjects" Multiplicity="1" />
           <End Role="StudentRepeaterDetails" Type="Self.StudentRepeaterDetails" Multiplicity="*" />
@@ -235,6 +289,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FKC278458FB8947303">
+          <End Role="SubjectComponents" Type="Self.SubjectComponents" Multiplicity="1" />
+          <End Role="SubjectMarks" Type="Self.SubjectMarks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectComponents">
+              <PropertyRef Name="SubjectComponentId" />
+            </Principal>
+            <Dependent Role="SubjectMarks">
+              <PropertyRef Name="SubjectComponentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FKCA48DE5A11E646F4">
           <End Role="Colleges" Type="Self.Colleges" Multiplicity="1" />
           <End Role="Students" Type="Self.Students" Multiplicity="*" />
@@ -276,10 +342,16 @@
           <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CourseSubjects" EntityType="Self.CourseSubjects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Degrees" EntityType="Self.Degrees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentBills" EntityType="Self.StudentBills" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StudentRepeaterDetails" EntityType="Self.StudentRepeaterDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubjectComponents" EntityType="Self.SubjectComponents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubjectMarks" EntityType="Self.SubjectMarks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_StudentBills_Students" Association="Self.FK_StudentBills_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="StudentBills" EntitySet="StudentBills" />
+          </AssociationSet>
           <AssociationSet Name="FK_StudentRepeaterDetails_CourseSubjects" Association="Self.FK_StudentRepeaterDetails_CourseSubjects">
             <End Role="CourseSubjects" EntitySet="CourseSubjects" />
             <End Role="StudentRepeaterDetails" EntitySet="StudentRepeaterDetails" />
@@ -302,6 +374,10 @@
           </AssociationSet>
           <AssociationSet Name="FKC278458F32EB2DDD" Association="Self.FKC278458F32EB2DDD">
             <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="SubjectMarks" EntitySet="SubjectMarks" />
+          </AssociationSet>
+          <AssociationSet Name="FKC278458FB8947303" Association="Self.FKC278458FB8947303">
+            <End Role="SubjectComponents" EntitySet="SubjectComponents" />
             <End Role="SubjectMarks" EntitySet="SubjectMarks" />
           </AssociationSet>
           <AssociationSet Name="FKCA48DE5A11E646F4" Association="Self.FKCA48DE5A11E646F4">
@@ -414,23 +490,23 @@
             <PropertyRef Name="StudentId" />
           </Key>
           <Property Name="StudentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="MiddleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="RegisterNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DateOfBirth" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RegisterNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateOfBirth" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="YearOfAdmission" Type="Int32" />
           <Property Name="PassedOutYear" Type="Int32" />
           <Property Name="Gender" Type="Int32" Nullable="false" />
           <Property Name="YearSem" Type="Int32" />
-          <Property Name="Nationality" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PermanantAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LocalAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="FathersName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MothersName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="GaurdiansName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Nationality" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PermanantAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LocalAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FathersName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MothersName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="GaurdiansName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CasteCategoryId" Type="Int32" Nullable="false" />
           <Property Name="CollegeId" Type="Int32" Nullable="false" />
           <Property Name="DegreeId" Type="Int32" Nullable="false" />
@@ -447,6 +523,7 @@
           <NavigationProperty Name="Cours" Relationship="Self.FKCA48DE5A8E3DEFEA" FromRole="Students" ToRole="Courses" />
           <NavigationProperty Name="Degree" Relationship="Self.FKCA48DE5A8FBF5BAE" FromRole="Students" ToRole="Degrees" />
           <NavigationProperty Name="StudentRepeaterDetails" Relationship="INFINITY_MUModel.FK_StudentRepeaterDetails_Students" FromRole="Student" ToRole="StudentRepeaterDetail" />
+          <NavigationProperty Name="StudentBills" Relationship="INFINITY_MUModel.FK_StudentBills_Students" FromRole="Student" ToRole="StudentBill" />
         </EntityType>
         <EntityType Name="SubjectMark">
           <Key>
@@ -458,6 +535,7 @@
           <Property Name="SubjectComponentId" Type="Int32" Nullable="false" />
           <Property Name="SubjectId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Subject" Relationship="Self.FKC278458F32EB2DDD" FromRole="SubjectMarks" ToRole="Subjects" />
+          <NavigationProperty Name="SubjectComponent" Relationship="INFINITY_MUModel.FKC278458FB8947303" FromRole="SubjectMark" ToRole="SubjectComponent" />
         </EntityType>
         <EntityType Name="Subject">
           <Key>
@@ -609,6 +687,16 @@
             <End Role="Student" EntitySet="Students" />
             <End Role="StudentRepeaterDetail" EntitySet="StudentRepeaterDetails" />
           </AssociationSet>
+          <EntitySet Name="StudentBills" EntityType="INFINITY_MUModel.StudentBill" />
+          <AssociationSet Name="FK_StudentBills_Students" Association="INFINITY_MUModel.FK_StudentBills_Students">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="StudentBill" EntitySet="StudentBills" />
+          </AssociationSet>
+          <EntitySet Name="SubjectComponents" EntityType="INFINITY_MUModel.SubjectComponent" />
+          <AssociationSet Name="FKC278458FB8947303" Association="INFINITY_MUModel.FKC278458FB8947303">
+            <End Role="SubjectComponent" EntitySet="SubjectComponents" />
+            <End Role="SubjectMark" EntitySet="SubjectMarks" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="StudentRepeaterDetail">
           <Key>
@@ -648,6 +736,74 @@
             </Principal>
             <Dependent Role="StudentRepeaterDetail">
               <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="StudentBill">
+          <Key>
+            <PropertyRef Name="BillId" />
+          </Key>
+          <Property Name="BillId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExaminationId" Type="Int32" Nullable="false" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="EligibleForConcession" Type="Boolean" Nullable="false" />
+          <Property Name="BillSegment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsEdited" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsCreatedManually" Type="Boolean" Nullable="false" />
+          <Property Name="HallticketUniqueNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BatchId" Type="Int32" />
+          <Property Name="Total" Type="Double" Nullable="false" />
+          <Property Name="ApprovalStatus" Type="Int32" Nullable="false" />
+          <Property Name="RegistrationStatus" Type="Int32" Nullable="false" />
+          <Property Name="CreatedUserId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedUserId" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedUserId" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Student" Relationship="INFINITY_MUModel.FK_StudentBills_Students" FromRole="StudentBill" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK_StudentBills_Students">
+          <End Type="INFINITY_MUModel.Student" Role="Student" Multiplicity="1" />
+          <End Type="INFINITY_MUModel.StudentBill" Role="StudentBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="StudentBill">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SubjectComponent">
+          <Key>
+            <PropertyRef Name="SubjectComponentId" />
+          </Key>
+          <Property Name="SubjectComponentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HasExamination" Type="Boolean" Nullable="false" />
+          <Property Name="RevisionNo" Type="Single" Nullable="false" />
+          <Property Name="YearIntroduced" Type="Int32" Nullable="false" />
+          <Property Name="RevisionRemarks" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedUserId" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedUserId" Type="Int32" />
+          <Property Name="DeletedUserId" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SubjectMarks" Relationship="INFINITY_MUModel.FKC278458FB8947303" FromRole="SubjectComponent" ToRole="SubjectMark" />
+        </EntityType>
+        <Association Name="FKC278458FB8947303">
+          <End Type="INFINITY_MUModel.SubjectComponent" Role="SubjectComponent" Multiplicity="1" />
+          <End Type="INFINITY_MUModel.SubjectMark" Role="SubjectMark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectComponent">
+              <PropertyRef Name="SubjectComponentId" />
+            </Principal>
+            <Dependent Role="SubjectMark">
+              <PropertyRef Name="SubjectComponentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -820,6 +976,50 @@
                 <ScalarProperty Name="StudentId" ColumnName="StudentId" />
                 <ScalarProperty Name="ExaminationId" ColumnName="ExaminationId" />
                 <ScalarProperty Name="RepeaterId" ColumnName="RepeaterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentBills">
+            <EntityTypeMapping TypeName="INFINITY_MUModel.StudentBill">
+              <MappingFragment StoreEntitySet="StudentBills">
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedUserId" ColumnName="DeletedUserId" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUserId" ColumnName="ModifiedUserId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedUserId" ColumnName="CreatedUserId" />
+                <ScalarProperty Name="RegistrationStatus" ColumnName="RegistrationStatus" />
+                <ScalarProperty Name="ApprovalStatus" ColumnName="ApprovalStatus" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="BatchId" ColumnName="BatchId" />
+                <ScalarProperty Name="HallticketUniqueNumber" ColumnName="HallticketUniqueNumber" />
+                <ScalarProperty Name="IsCreatedManually" ColumnName="IsCreatedManually" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsEdited" ColumnName="IsEdited" />
+                <ScalarProperty Name="BillSegment" ColumnName="BillSegment" />
+                <ScalarProperty Name="EligibleForConcession" ColumnName="EligibleForConcession" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="ExaminationId" ColumnName="ExaminationId" />
+                <ScalarProperty Name="BillId" ColumnName="BillId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubjectComponents">
+            <EntityTypeMapping TypeName="INFINITY_MUModel.SubjectComponent">
+              <MappingFragment StoreEntitySet="SubjectComponents">
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="DeletedUserId" ColumnName="DeletedUserId" />
+                <ScalarProperty Name="ModifiedUserId" ColumnName="ModifiedUserId" />
+                <ScalarProperty Name="CreatedUserId" ColumnName="CreatedUserId" />
+                <ScalarProperty Name="RevisionRemarks" ColumnName="RevisionRemarks" />
+                <ScalarProperty Name="YearIntroduced" ColumnName="YearIntroduced" />
+                <ScalarProperty Name="RevisionNo" ColumnName="RevisionNo" />
+                <ScalarProperty Name="HasExamination" ColumnName="HasExamination" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SubjectComponentId" ColumnName="SubjectComponentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -71,6 +71,26 @@
                 <asp:TextBox ID="txtPractialIAMin" runat="server" CssClass="form-control"></asp:TextBox>
             </td>
         </tr>
+        <tr>
+            <td class="auto-style1">PROJECT MAX</td>
+            <td>PROJECT MIN</td>
+            <td>VIVA MAX</td>
+            <td>VIVA MIN</td>
+        </tr>
+        <tr>
+            <td class="auto-style1">
+                <asp:TextBox ID="txtProjectMax" runat="server" CssClass="form-control"></asp:TextBox>
+            </td>
+            <td>
+                <asp:TextBox ID="txtProjectMin" runat="server" CssClass="form-control"></asp:TextBox>
+            </td>
+            <td>
+                <asp:TextBox ID="txtVivaMax" runat="server" CssClass="form-control"></asp:TextBox>
+            </td>
+            <td>
+                <asp:TextBox ID="txtVivaMin" runat="server" CssClass="form-control"></asp:TextBox>
+            </td>
+        </tr>
     </table>
         </div>
         <div class="panel-footer">
