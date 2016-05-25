@@ -33,5 +33,7 @@ namespace MUOffLoad
         public virtual DbSet<SubjectMark> SubjectMarks { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<StudentRepeaterDetail> StudentRepeaterDetails { get; set; }
+        public virtual DbSet<StudentBill> StudentBills { get; set; }
+        public virtual DbSet<SubjectComponent> SubjectComponents { get; set; }
     }
 }

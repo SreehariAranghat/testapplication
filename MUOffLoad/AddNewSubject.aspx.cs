@@ -62,12 +62,28 @@ namespace MUOffLoad
                         practical.SubjectComponentId = 3;
 
                         SubjectMark practialIA = new SubjectMark();
-                        practical.Max = int.Parse(txtPractialIAMax.Text);
-                        practical.Min = int.Parse(txtPractialIAMin.Text);
-                        practical.SubjectComponentId = 6;
+                        practialIA.Max = int.Parse(txtPractialIAMax.Text);
+                        practialIA.Min = int.Parse(txtPractialIAMin.Text);
+                        practialIA.SubjectComponentId = 6;
 
                         subject.SubjectMarks.Add(practical);
                         subject.SubjectMarks.Add(practialIA);
+                    }
+
+                    if(!string.IsNullOrEmpty(txtProjectMax.Text))
+                    {
+                        SubjectMark project = new SubjectMark();
+                        project.Max = int.Parse(txtProjectMax.Text);
+                        project.Min = int.Parse(txtProjectMin.Text);
+                        project.SubjectComponentId = 4;
+
+                        SubjectMark viva = new SubjectMark();
+                        viva.Max = int.Parse(txtVivaMax.Text);
+                        viva.Min = int.Parse(txtVivaMin.Text);
+                        viva.SubjectComponentId = 5;
+
+                        subject.SubjectMarks.Add(project);
+                        subject.SubjectMarks.Add(viva);
                     }
 
                     entities.Subjects.Add(subject);

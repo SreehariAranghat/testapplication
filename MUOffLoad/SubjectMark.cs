@@ -21,5 +21,6 @@ namespace MUOffLoad
         public int SubjectId { get; set; }
     
         public virtual Subject Subject { get; set; }
+        public virtual SubjectComponent SubjectComponent { get; set; }
     }
 }

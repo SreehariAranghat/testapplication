@@ -132,7 +132,7 @@ namespace MUOffLoad
                     gfx.DrawString("Credit Based Fifth Semester Degree Examination Nov 2015", normalboldex, XBrushes.Black, middlepoint - m, ystart + 50);
                 }
 
-                gfx.DrawString(datarow.PrintDate != null ? datarow.PrintDate.ToString() : "23-Mar-2016", normalboldex, XBrushes.Black, drawablewidth - 100, ystart + 5);
+                gfx.DrawString(datarow.PrintDate != null ? datarow.PrintDate.ToString() : "29-Apr-2016", normalboldex, XBrushes.Black, drawablewidth - 100, ystart + 5);
 
 
 
@@ -611,7 +611,7 @@ namespace MUOffLoad
                     gfx.DrawString("Credit Based Sixth Semester Degree Examination Nov 2015", normalboldex, XBrushes.Black, middlepoint - m, ystart + 50);
                 }
 
-                gfx.DrawString(datarow.PrintDate != null ? datarow.PrintDate.ToString() : "23-Mar-2016", normalboldex, XBrushes.Black, drawablewidth - 100, ystart + 5);
+                gfx.DrawString(datarow.PrintDate != null ? datarow.PrintDate.ToString() : "29-Apr-2016", normalboldex, XBrushes.Black, drawablewidth - 100, ystart + 5);
 
 
 
@@ -1267,7 +1267,7 @@ namespace MUOffLoad
 
                 gfx.DrawString(datarow.DegreeName.ToUpper(), title, XBrushes.CornflowerBlue, middlepoint - 50, ystart);
                 gfx.DrawString("Credit Based Fifth Semester Degree Examination Nov 2015", normalbold, XBrushes.Black, middlepoint - 120, ystart + 20);
-                gfx.DrawString(datarow.PrintDate != null ? datarow.PrintDate.ToString() : "23-Mar-2016", normalbold, XBrushes.Black, drawablewidth - 100, ystart);
+                gfx.DrawString(datarow.PrintDate != null ? datarow.PrintDate.ToString() : "29-Apr-2016", normalbold, XBrushes.Black, drawablewidth - 100, ystart);
 
 
 
@@ -1651,7 +1651,7 @@ namespace MUOffLoad
                     gfx.DrawString("Credit Based Seventh Semester Degree Examination Nov 2015", normalboldex, XBrushes.Black, middlepoint - m, ystart + 50);
                 }
 
-                gfx.DrawString(datarow.PrintDate != null ? datarow.PrintDate.ToString() : "23-Mar-2016", normalboldex, XBrushes.Black, drawablewidth - 100, ystart + 5);
+                gfx.DrawString(datarow.PrintDate != null ? datarow.PrintDate.ToString() : "29-Apr-2016", normalboldex, XBrushes.Black, drawablewidth - 100, ystart + 5);
 
 
 
@@ -2127,7 +2127,7 @@ namespace MUOffLoad
                     gfx.DrawString("Credit Based Seventh Semester Degree Examination Nov 2015", normalboldex, XBrushes.Black, middlepoint - m, ystart + 50);
                 }
 
-                gfx.DrawString(datarow.PrintDate != null ? datarow.PrintDate.ToString() : "23-Mar-2016", normalboldex, XBrushes.Black, drawablewidth - 100, ystart + 5);
+                gfx.DrawString(datarow.PrintDate != null ? datarow.PrintDate.ToString() : "29-Apr-2016", normalboldex, XBrushes.Black, drawablewidth - 100, ystart + 5);
 
 
 
@@ -2599,7 +2599,7 @@ namespace MUOffLoad
                     }
                 }
 
-                gfx.DrawString(datarow.PrintDate != null ? datarow.PrintDate.ToString() : "23-Mar-2016", normalboldex, XBrushes.Black, drawablewidth - 100, ystart + 5);
+                gfx.DrawString(datarow.PrintDate != null ? datarow.PrintDate.ToString() : "29-Apr-2016", normalboldex, XBrushes.Black, drawablewidth - 100, ystart + 5);
 
 
 
@@ -2793,7 +2793,7 @@ namespace MUOffLoad
                             {
                                 gfx.DrawString("IA", normal, XBrushes.Black, 305, ystart + 31);
                                 gfx.DrawString(item.PracticalIAMax, normal, XBrushes.Black, 350, ystart + 31);
-                                gfx.DrawString(item.PracticalIAMin, normal, XBrushes.Black, 380, ystart + 31);
+                                gfx.DrawString("-", normal, XBrushes.Black, 385, ystart + 31);
                                 gfx.DrawString(item.PracticalIATotal.ToString(), normal, XBrushes.Black, 415, ystart + 31);
 
                                 gfx.DrawLine(XPens.Black, 300, ystart + 32, 445, ystart + 32);

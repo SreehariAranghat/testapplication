@@ -13,6 +13,7 @@
                 <li><a href="UpdateSubjectName.aspx">Update Subject Name</a></li>
                 <li><a href="RemoveCourseSubject.aspx">Add / Remove Subjects to Course</a></li>
                 <li><a href="UpdateSubjectCode.aspx">Migrate Course Subjects</a></li>
+                <li><a href="UpdateMaxMinMarks.aspx">Update Subject MaxMin Marks</a></li>
             </ul>
         </div>
     </div>
@@ -29,6 +30,8 @@
                 <li><a href="UpdateStudentSemester.aspx">Update Student Semester</a></li>
                 <li><a href="UpdateStudentCollege.aspx">Update Student College</a></li>
                 <li><a href="UpdateStudentName.aspx">Update Student Name</a></li>
+                <li><a href="ReAdmission.aspx">Update Student Readmission Status</a></li>
+                <li><a href="ReCreatingBills.aspx">Update Student Bill Submit Status</a></li>
             </ul>
         </div>
     </div>    

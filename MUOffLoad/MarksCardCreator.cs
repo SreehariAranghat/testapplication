@@ -53,7 +53,7 @@ namespace MUOffLoad
             if (student != null)
             {
 
-                var UGres = entities.UGFinalResultTables.Where(r => r.RegisterNumber == regno).ToList();
+                var UGres = entities.UGFinalResultTables.Where(r => r.RegisterNumber == regno && r.YearSem == yearsem).ToList();
 
                 foreach (var r in UGres)
                 {
