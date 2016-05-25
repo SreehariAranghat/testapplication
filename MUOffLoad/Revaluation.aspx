@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:panel runat="server" CssClass="alert alert-danger alert-dark alert-page" ID="pnlMessagePanel" Visible="False">
+       <asp:panel runat="server" CssClass="alert alert-danger alert-dark alert-page" ID="pnlMessagePanel" Visible="False">
          <asp:Label ID="lblMessageBox" runat="server" Text="[]"></asp:Label>
     </asp:panel>
      <div class="panel panel-default">
@@ -61,34 +61,29 @@
                      Scan Details
                 </div>
                 <div class="panel-body">
-                   <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table">
+                   <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table" DataKeyNames="Semester,PaperName,PaperCode,BatchNo,DummyNumber">
                      <Columns>
-                 <asp:BoundField DataField="CourseName" HeaderText="CourseName" />
                  <asp:BoundField DataField="Semester" HeaderText="Semester" />
                  <asp:BoundField HeaderText="PaperName" DataField="PaperName" />
                  <asp:BoundField HeaderText="PaperCode" DataField="PaperCode" />
                  <asp:BoundField HeaderText="BatchNo" DataField="BatchNo" />
                  <asp:BoundField HeaderText="DummyNumber" DataField="DummyNumber" />
-                 <asp:TemplateField HeaderText="PersonalSeeing">
-                     <ItemTemplate>
-                         <asp:CheckBox ID="chkPersonalSeeing" runat="server" />
-                     </ItemTemplate>
-                 </asp:TemplateField>
-                 <asp:TemplateField HeaderText="Revaluation">
-                     <ItemTemplate>
-                         <asp:CheckBox ID="chkRevaluation" runat="server" />
-                     </ItemTemplate>
-                 </asp:TemplateField>
+                        
+                         <asp:TemplateField HeaderText="Revaluation">
+                             
+                         </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Personel Seeing"></asp:TemplateField>
+                        
              </Columns>
          </asp:GridView>
                 </div>
+               <div class="panel-footer">
+                   <div style="text-align:right">
+                        
+                       <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-primary" OnClick="btnSave_Click" />
+                        
+                   </div>
+               </div>
+              
         </asp:panel>
-         <div class="panel panel-success">
-             <div class="panel-heading">Save</div>
-             <div class="panel-body">
-                 <div style="text-align:right">
-                     <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-primary" OnClick="btnSave_Click" ValidationGroup="FinalSet" />
-                 </div>
-             </div>
-         </div>
 </asp:Content>

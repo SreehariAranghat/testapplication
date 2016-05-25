@@ -15,15 +15,15 @@ namespace MUOffLoad
     public partial class Revaluation
     {
         public int ResultID { get; set; }
+        public string CourseName { get; set; }
+        public string Semester { get; set; }
         public string RegisterNumber { get; set; }
         public string StudentName { get; set; }
         public string SubjectCode { get; set; }
         public string SubjectName { get; set; }
         public string DummyNo { get; set; }
         public string BatchNo { get; set; }
-        public Nullable<int> IsPersonalSeeing { get; set; }
-        public Nullable<int> IsRevaluation { get; set; }
-        public string CourseName { get; set; }
-        public string Semester { get; set; }
+        public Nullable<bool> IsPersonalSeeing { get; set; }
+        public Nullable<bool> IsRevaluation { get; set; }
     }
 }
